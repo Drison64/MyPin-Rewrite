@@ -1,0 +1,4 @@
+name: MyPin
+version: ${project.version}
+main: me.drison64.mypin.Main
+api-version: 1.14
