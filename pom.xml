@@ -50,6 +50,7 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
+        <finalName>MyPin</finalName>
     </build>
 
     <repositories>

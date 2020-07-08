@@ -1,35 +1,34 @@
 package me.drison64.mypin.Managers;
 
+import me.drison64.mypin.Configurations.Configuration;
 import me.drison64.mypin.Main;
-import org.bukkit.configuration.file.FileConfiguration;
-import java.io.File;
+
 import java.util.HashMap;
+import java.util.List;
 
 public class ConfigManager {
 
     private Main main;
 
-    private File file;
-    private FileConfiguration config;
-    private String fileName;
-    private HashMap<String, FileConfiguration> configs;
+    private List<Configuration> registeredConfigurations;
+    private HashMap<String, Configuration> configNames;
 
     public ConfigManager(Main main) {
         this.main = main;
     }
 
-    public void createConfig(String fileName) {
-
+    public void registerConfig(Configuration configuration, String configName) {
+        registeredConfigurations.add(configuration);
+        configNames.put(configName, configuration);
     }
 
-    /*public FileConfiguration getConfig(String fileName) {
+    /*public void getConfig(String configName) {
+        for (Configuration configuration : configNames.keySet()) {
+            if (configuration == configName) {
+
+            }
+        }
 
     }*/
-
-    public void reloadConfig(String fileName) {
-
-    }
-
-
 
 }
