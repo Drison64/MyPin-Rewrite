@@ -12,9 +12,8 @@ public class Config extends Configuration {
         super(main);
         this.main = main;
         this.configManager = main.getConfigManager();
-
-
-
+        createConfig("config");
+        configManager.registerConfig(this);
     }
 
 }

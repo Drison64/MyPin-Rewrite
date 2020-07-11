@@ -1,5 +1,6 @@
 package me.drison64.mypin.Managers;
 
+import me.drison64.mypin.Configurations.Config;
 import me.drison64.mypin.Configurations.Configuration;
 import me.drison64.mypin.Main;
 
@@ -11,24 +12,24 @@ public class ConfigManager {
     private Main main;
 
     private List<Configuration> registeredConfigurations;
-    private HashMap<String, Configuration> configNames;
+    //private HashMap<String, Configuration> configNames;
 
     public ConfigManager(Main main) {
         this.main = main;
     }
 
-    public void registerConfig(Configuration configuration, String configName) {
+    public void registerConfig(Configuration configuration) {
         registeredConfigurations.add(configuration);
-        configNames.put(configName, configuration);
+        //configNames.put(configName, configuration);
     }
 
-    /*public void getConfig(String configName) {
-        for (Configuration configuration : configNames.keySet()) {
-            if (configuration == configName) {
-
+    public Configuration getConfig(Class<? extends Configuration> clazz) {
+        for (int i = 0; i < registeredConfigurations.size(); i++) {
+            if (registeredConfigurations.get(i).getClass() == clazz) {
+                return registeredConfigurations.get(i);
             }
         }
-
-    }*/
+        return null;
+    }
 
 }

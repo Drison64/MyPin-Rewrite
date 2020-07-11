@@ -1,5 +1,6 @@
 package me.drison64.mypin.Inventories;
 
+import me.drison64.mypin.Configurations.Config;
 import me.drison64.mypin.Main;
 import me.drison64.mypin.Utils.ArrayUtils;
 import me.drison64.mypin.Utils.InventoryTitleUtils;

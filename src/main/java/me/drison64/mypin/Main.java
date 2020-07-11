@@ -1,5 +1,6 @@
 package me.drison64.mypin;
 
+import me.drison64.mypin.Configurations.Config;
 import me.drison64.mypin.Inventories.AddInventory;
 import me.drison64.mypin.Listener.InventoryListener;
 import me.drison64.mypin.Managers.ConfigManager;
@@ -26,6 +27,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new InventoryListener(this), this);
 
         configManager = new ConfigManager(this);
+        Config config = new Config(this);
 
         getCommand("cunt").setExecutor(new cmdcunt(this));
     }

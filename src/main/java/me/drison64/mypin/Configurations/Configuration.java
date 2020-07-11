@@ -41,4 +41,20 @@ public class Configuration {
         config = YamlConfiguration.loadConfiguration(file);
     }
 
+    public FileConfiguration get() {
+        return config;
+    }
+
+    public void save() {
+        try {
+            config.save(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
 }
