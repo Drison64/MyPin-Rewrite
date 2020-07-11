@@ -4,6 +4,7 @@ import me.drison64.mypin.Configurations.Config;
 import me.drison64.mypin.Configurations.Configuration;
 import me.drison64.mypin.Main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class ConfigManager {
 
     private Main main;
 
-    private List<Configuration> registeredConfigurations;
+    private List<Configuration> registeredConfigurations = new ArrayList<>();
     //private HashMap<String, Configuration> configNames;
 
     public ConfigManager(Main main) {

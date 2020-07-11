@@ -27,7 +27,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new InventoryListener(this), this);
 
         configManager = new ConfigManager(this);
-        Config config = new Config(this);
+        configManager.registerConfig(new Config(this));
 
         getCommand("cunt").setExecutor(new cmdcunt(this));
     }
