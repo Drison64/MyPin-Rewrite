@@ -18,7 +18,9 @@ public abstract class AbstractInventory {
 
     protected Main main;
 
-    protected String title;
+    protected String originalTitle;
+
+    protected String currentTitle;
 
     public int getSize() {
         return size;
@@ -28,18 +30,20 @@ public abstract class AbstractInventory {
 
     private List<UUID> players = new ArrayList<>();
 
-    public AbstractInventory(Main main, String title, int size) {
+    public AbstractInventory(Main main, String originalTitle, int size) {
         this.main = main;
         this.size = size;
-        this.title = title;
+        this.originalTitle = originalTitle;
     }
 
     public void open(Player player, String altTitle) {
         Inventory inventory;
         if (altTitle == null) {
-            inventory = Bukkit.createInventory(null, size, title);
+            inventory = Bukkit.createInventory(null, size, originalTitle);
+            this.currentTitle = originalTitle;
         } else {
             inventory = Bukkit.createInventory(null, size, altTitle);
+            this.currentTitle = altTitle;
         }
 
         init(inventory);

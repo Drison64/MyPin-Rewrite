@@ -2,9 +2,11 @@ package me.drison64.mypin.Inventories;
 
 import me.drison64.mypin.Configurations.Config;
 import me.drison64.mypin.Main;
+import me.drison64.mypin.Managers.PinManager;
 import me.drison64.mypin.Utils.ArrayUtils;
 import me.drison64.mypin.Utils.InventoryTitleUtils;
 import me.drison64.mypin.Utils.ItemUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -15,15 +17,16 @@ import java.util.Arrays;
 public class AddInventory extends AbstractInventory {
 
     private final Main main;
+    private PinManager pinManager;
     private final String originalTitle = "Please set a pin";
 
-    public int code;
     private final Object[] number_buttons = {12, 13, 14, 21, 22, 23, 30, 31, 32, 40};
 
 
     public AddInventory(Main main) {
         super(main, "Please set a pin", 54);
         this.main = main;
+        this.pinManager = main.getPinManager();
     }
 
     @Override
@@ -39,7 +42,7 @@ public class AddInventory extends AbstractInventory {
         inventory.setItem(32, ItemUtils.mkskull(1, "http://textures.minecraft.net/texture/1b2454a5faa25f7c4f5771d52bb4f55deb1939f75efd8e0ac421812ba3dc7", "9", Arrays.asList("")));
         inventory.setItem(40, ItemUtils.mkskull(1, "http://textures.minecraft.net/texture/ffa45911b16298cfca4b2291eeda666113bc6f2a37dcb2ecd8c2754d24ef6", "0", Arrays.asList("")));
 
-        if (title.length() < 1) {
+        if (currentTitle == originalTitle) {
             inventory.setItem(41, ItemUtils.mkitem(1, Material.GRAY_STAINED_GLASS_PANE, "", Arrays.asList("")));
             inventory.setItem(39, ItemUtils.mkitem(1, Material.GRAY_STAINED_GLASS_PANE, "", Arrays.asList("")));
         } else {

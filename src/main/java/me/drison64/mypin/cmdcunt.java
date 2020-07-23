@@ -25,8 +25,7 @@ public class cmdcunt implements CommandExecutor {
 
         //inventoryManager.getInventory(ClickType.ADD).open((Player) commandSender, null);
 
-        main.getConfigManager().getConfig(ConfigType.CONFIG.getClazz()).get().set("pes", "kocka");
-        main.getConfigManager().getConfig(ConfigType.CONFIG.getClazz()).save();
+
 
         return false;
     }
