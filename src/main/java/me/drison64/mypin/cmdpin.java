@@ -30,7 +30,6 @@ public class cmdpin implements CommandExecutor {
         }
 
         if (args[0].equals("add")) {
-            player.sendMessage("hovno");
             waitingManager.addWaiting(player, ClickType.ADD);
         }
 

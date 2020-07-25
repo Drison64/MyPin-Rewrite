@@ -3,10 +3,12 @@ package me.drison64.mypin.Objects;
 import me.drison64.mypin.Configurations.Configuration;
 import me.drison64.mypin.Main;
 import me.drison64.mypin.Managers.ConfigManager;
+import me.drison64.mypin.Utils.EncryptionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.event.block.BlockPhysicsEvent;
 
 import java.util.List;
 import java.util.UUID;
@@ -51,7 +53,7 @@ public class Pin {
     public void toStorage(Block block) {
         String id = String.valueOf(block.getX()) + String.valueOf(block.getY()) + String.valueOf(block.getZ());
         //Always pin, world, owner, disabled and defaultpermissions are set.
-        data.get().set("data.blocks." + id + ".pin", this.pin);
+        data.get().set("data.blocks." + id + ".pin", EncryptionUtils.toSHA256(this.pin, block.getLocation()));
         data.get().set("data.blocks." + id + ".world", this.world.getName());
         data.get().set("data.blocks." + id + ".owner", this.owner.toString());
         data.get().set("data.blocks." + id + ".commands", this.commands);
