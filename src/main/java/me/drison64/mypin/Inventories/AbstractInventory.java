@@ -3,10 +3,12 @@ package me.drison64.mypin.Inventories;
 import me.drison64.mypin.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -22,6 +24,10 @@ public abstract class AbstractInventory {
 
     protected String currentTitle;
 
+    protected String code;
+
+    protected Block block;
+
     public int getSize() {
         return size;
     }
@@ -34,9 +40,19 @@ public abstract class AbstractInventory {
         this.main = main;
         this.size = size;
         this.originalTitle = originalTitle;
+        this.code = "";
     }
 
     public void open(Player player, String altTitle) {
+        doOpen(player, altTitle);
+    }
+
+    public void open(Player player, String altTitle, PlayerInteractEvent e) {
+        this.block = e.getClickedBlock();
+        doOpen(player, altTitle);
+    }
+
+    private void doOpen(Player player, String altTitle) {
         Inventory inventory;
         if (altTitle == null) {
             inventory = Bukkit.createInventory(null, size, originalTitle);

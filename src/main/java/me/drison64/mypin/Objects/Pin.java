@@ -58,9 +58,28 @@ public class Pin {
         data.get().set("data.blocks." + id + ".owner", this.owner.toString());
         data.get().set("data.blocks." + id + ".commands", this.commands);
         data.get().set("data.blocks." + id + ".defaultpermissions", this.defaultpermissions);
-        data.get().set("data.blocks." + id + ".permissions", this.permissions);
+
+        //TODO Permissions
+
+        // data.get().set("data.blocks." + id + ".permissions", this.permissions);
         data.get().set("data.blocks." + id + ".disabled", this.disabled);
         data.save();
+    }
+
+    /*
+      pin.setPin(hash);
+      pin.setWorld(this.block.getLocation().getWorld());
+      pin.setOwner(player.getUniqueId());
+      pin.setDefaultpermissions("10000");
+      pin.setDisabled(false);
+    */
+
+    public void setup(String pin, World world, UUID owner, Boolean disabled) {
+        this.pin = pin;
+        this.world = world;
+        this.owner = owner;
+        this.defaultpermissions = "10000";
+        this.disabled = disabled;
     }
 
     public void delete(Block block) {
@@ -75,13 +94,13 @@ public class Pin {
     public Pin(Main main) {
         this.main = main;
         this.configManager = main.getConfigManager();
-        this.data = configManager.getConfig(ConfigType.DATA.getClazz());
+        this.data = configManager.getConfig(ConfigType.DATA);
     }
 
     public Pin(Block block, Main main) {
         this.main = main;
         this.configManager = main.getConfigManager();
-        this.data = configManager.getConfig(ConfigType.DATA.getClazz());
+        this.data = configManager.getConfig(ConfigType.DATA);
 
         String id = String.valueOf(block.getX()) + String.valueOf(block.getY()) + String.valueOf(block.getZ());
         if (!(data.get().isSet("data.blocks." + id))) {

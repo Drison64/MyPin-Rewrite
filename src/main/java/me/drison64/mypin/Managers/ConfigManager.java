@@ -3,6 +3,7 @@ package me.drison64.mypin.Managers;
 import me.drison64.mypin.Configurations.Config;
 import me.drison64.mypin.Configurations.Configuration;
 import me.drison64.mypin.Main;
+import me.drison64.mypin.Objects.ConfigType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +32,10 @@ public class ConfigManager {
             }
         }
         return null;
+    }
+
+    public Configuration getConfig(ConfigType type) {
+        return getConfig(type.getClazz());
     }
 
 }

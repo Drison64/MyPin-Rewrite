@@ -2,7 +2,6 @@ package me.drison64.mypin.Inventories;
 
 import me.drison64.mypin.Main;
 import me.drison64.mypin.Managers.PinManager;
-import me.drison64.mypin.Objects.Pin;
 import me.drison64.mypin.Utils.ArrayUtils;
 import me.drison64.mypin.Utils.InventoryTitleUtils;
 import me.drison64.mypin.Utils.ItemUtils;
@@ -13,17 +12,17 @@ import org.bukkit.inventory.Inventory;
 
 import java.util.Arrays;
 
-public class AddInventory extends AbstractInventory {
+public class EnterInventory extends AbstractInventory {
 
     private final Main main;
     private PinManager pinManager;
-    private final String originalTitle = "Please set a pin";
+    private final String originalTitle = "Please enter a pin";
 
     private final Object[] number_buttons = {12, 13, 14, 21, 22, 23, 30, 31, 32, 40};
 
 
-    public AddInventory(Main main) {
-        super(main, "Please set a pin", 54);
+    public EnterInventory(Main main) {
+        super(main, "Please enter a pin", 54);
         this.main = main;
         this.pinManager = main.getPinManager();
     }
@@ -57,16 +56,10 @@ public class AddInventory extends AbstractInventory {
         int slot = e.getRawSlot();
         e.setCancelled(true);
         if (ArrayUtils.contains(number_buttons, slot)) {
-
-            code = code + slot;
-
             open((Player) e.getWhoClicked(), InventoryTitleUtils.addCode(e, originalTitle));
         }
         if (slot == 39) {
             String removecode = InventoryTitleUtils.removeCode(e, originalTitle);
-
-            code = code.substring(0, code.length() - 1);
-
             if (removecode == null) {
                 open((Player) e.getWhoClicked(), originalTitle);
             } else {
@@ -75,16 +68,7 @@ public class AddInventory extends AbstractInventory {
             open((Player) e.getWhoClicked(), InventoryTitleUtils.removeCode(e, originalTitle));
         } else if (slot == 41) {
 
-            Pin pin = pinManager.getNew();
-            pin.setPin(code);
-            pin.setWorld(block.getWorld());
-            pin.setOwner(e.getWhoClicked().getUniqueId());
-            pin.setCommands(main.getDefaultActionsUtils().getDefaultActions(block));
-            pin.setDefaultpermissions("10000");
-            pin.setDisabled(false);
-            pin.toStorage(block);
 
-            close((Player) e.getWhoClicked());
 
         }
     }

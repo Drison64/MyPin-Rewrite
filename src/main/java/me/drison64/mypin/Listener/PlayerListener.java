@@ -5,7 +5,10 @@ import me.drison64.mypin.Managers.InventoryManager;
 import me.drison64.mypin.Managers.PinManager;
 import me.drison64.mypin.Managers.WaitingManager;
 import me.drison64.mypin.Objects.ClickType;
+import me.drison64.mypin.Utils.DoorUtils;
+import me.drison64.mypin.Utils.PinUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.block.data.type.Door;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -20,12 +23,16 @@ public class PlayerListener implements Listener {
 
     private InventoryManager inventoryManager;
     private WaitingManager waitingManager;
+    private PinUtils pinUtils;
+    private DoorUtils doorUtils;
 
     public PlayerListener(Main main) {
         this.main = main;
 
-        inventoryManager = main.getInventoryManager();
-        waitingManager = main.getWaitingManager();
+        this.inventoryManager = main.getInventoryManager();
+        this.waitingManager = main.getWaitingManager();
+        this.pinUtils = main.getPinUtils();
+        this.doorUtils = main.getDoorUtils();
     }
 
     @EventHandler
@@ -38,12 +45,40 @@ public class PlayerListener implements Listener {
             Bukkit.getConsoleSender().sendMessage("pes2");
 
             if (type == null) {
+
+                if (pinUtils.isSet(event.getClickedBlock())) {
+
+                    event.setCancelled(true);
+
+                    inventoryManager.getInventory(ClickType.ENTER).open(player, null, event);
+
+                    waitingManager.removeWaiting(player);
+
+                } else {
+
+                    if (doorUtils.isDoor(event.getClickedBlock())) {
+
+                        if (pinUtils.isSet(doorUtils.getOtherHalfBlock(event.getClickedBlock()))) {
+
+                            event.setCancelled(true);
+
+                            inventoryManager.getInventory(ClickType.ENTER).open(player, null, event);
+
+                            waitingManager.removeWaiting(player);
+
+                        }
+
+                    }
+
+                }
+
                 return;
+
             }
 
             event.setCancelled(true);
 
-            inventoryManager.getInventory(type).open(player, null);
+            inventoryManager.getInventory(type).open(player, null, event);
 
             waitingManager.removeWaiting(player);
             Bukkit.getConsoleSender().sendMessage("pes3");
