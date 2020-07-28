@@ -11,6 +11,7 @@ public class ActionsManager {
     public ActionsManager(Main main) {
         this.main = main;
     }
+    //test
 
     //TODO Actionsmanager (maybe this is not needed at all lul)
 
