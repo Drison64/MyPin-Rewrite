@@ -2,7 +2,9 @@ package me.drison64.mypin.Inventories;
 
 import me.drison64.mypin.Main;
 import me.drison64.mypin.Managers.PinManager;
+import me.drison64.mypin.Objects.Pin;
 import me.drison64.mypin.Utils.ArrayUtils;
+import me.drison64.mypin.Utils.EncryptionUtils;
 import me.drison64.mypin.Utils.InventoryTitleUtils;
 import me.drison64.mypin.Utils.ItemUtils;
 import org.bukkit.Material;
@@ -67,6 +69,10 @@ public class EnterInventory extends AbstractInventory {
             }
             open((Player) e.getWhoClicked(), InventoryTitleUtils.removeCode(e, originalTitle));
         } else if (slot == 41) {
+
+            Pin pin = pinManager.getNew(block);
+
+            String hashed = EncryptionUtils.toSHA256(code, block.getLocation());
 
 
 
