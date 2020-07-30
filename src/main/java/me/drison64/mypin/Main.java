@@ -6,10 +6,8 @@ import me.drison64.mypin.Inventories.AddInventory;
 import me.drison64.mypin.Inventories.EnterInventory;
 import me.drison64.mypin.Listener.InventoryListener;
 import me.drison64.mypin.Listener.PlayerListener;
-import me.drison64.mypin.Managers.ConfigManager;
-import me.drison64.mypin.Managers.InventoryManager;
-import me.drison64.mypin.Managers.PinManager;
-import me.drison64.mypin.Managers.WaitingManager;
+import me.drison64.mypin.Managers.*;
+import me.drison64.mypin.Objects.Action.Action_Interact;
 import me.drison64.mypin.Utils.DefaultActionsUtils;
 import me.drison64.mypin.Utils.DoorUtils;
 import me.drison64.mypin.Utils.PinUtils;
@@ -24,12 +22,15 @@ public class Main extends JavaPlugin {
     private ConfigManager configManager;
     private WaitingManager waitingManager;
     private PinManager pinManager;
+    private ActionsManager actionsManager;
     private PinUtils pinUtils;
     private DefaultActionsUtils defaultActionsUtils;
     private DoorUtils doorUtils;
 
     @Override
     public void onEnable() {
+
+        actionsManager = new ActionsManager(this);
 
         defaultActionsUtils = new DefaultActionsUtils(this);
 
@@ -49,6 +50,8 @@ public class Main extends JavaPlugin {
         pinUtils = new PinUtils(this);
 
 
+
+        actionsManager.registerAction(new Action_Interact(this));
 
         inventoryManager.registerInventory(new AddInventory(this));
         inventoryManager.registerInventory(new EnterInventory(this));
