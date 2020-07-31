@@ -97,4 +97,8 @@ public class Main extends JavaPlugin {
     public DoorUtils getDoorUtils() {
         return doorUtils;
     }
+
+    public ActionsManager getActionsManager() {
+        return actionsManager;
+    }
 }

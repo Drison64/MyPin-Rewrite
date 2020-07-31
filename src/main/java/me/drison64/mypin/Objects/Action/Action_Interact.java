@@ -10,6 +10,8 @@ import org.bukkit.block.data.type.Door;
 import org.bukkit.block.data.type.TrapDoor;
 import org.bukkit.entity.Player;
 
+import java.util.List;
+
 public class Action_Interact extends Action {
 
     private Main main;
@@ -17,13 +19,13 @@ public class Action_Interact extends Action {
     private int delay = 1;
 
     public Action_Interact(Main main, ActionType type) {
-        super(type);
+        super(main, type);
         this.main = main;
     }
 
     @Override
-    public void run(String data, Integer line, Block block, Player player) {
-        this.splitted = data.split(" ");
+    public void run(List<String> data, Integer line, Block block, Player player) {
+        this.splitted = data.get(line - 1).split(" ");
         if (!(splitted[1].isEmpty())) {
             try {
                 delay = Integer.parseInt(splitted[1]);
@@ -57,6 +59,7 @@ public class Action_Interact extends Action {
                 @Override
                 public void run() {
                     trapDoor.setOpen(false);
+                    runNext(data, line, block, player);
                 }
             }, delay * 20);
 
