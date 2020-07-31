@@ -6,19 +6,15 @@ import org.bukkit.entity.Player;
 
 public abstract class Action {
 
-    private String data;
-    protected Player player;
-    protected Block block;
     private ActionType type;
 
-    public Action(String data, ActionType type, Player player, Block block) {
-        this.data = data;
+    public Action(ActionType type) {
         this.type = type;
-        this.player = player;
-        this.block = block;
-        run();
     }
 
-    public abstract void run();
+    public abstract void run(String data, Integer line, Block block, Player player);
 
+    public ActionType getType() {
+        return type;
+    }
 }

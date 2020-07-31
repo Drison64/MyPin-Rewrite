@@ -15,17 +15,15 @@ public class Action_Interact extends Action {
     private Main main;
     private String[] splitted;
     private int delay = 1;
-    private int line;
 
-    public Action_Interact(Main main, String data, ActionType type, Integer line, Block block, Player player) {
-        super(data, type, player, block);
+    public Action_Interact(Main main, ActionType type) {
+        super(type);
         this.main = main;
-        this.splitted = data.split(" ");
-        this.line = line;
     }
 
     @Override
-    public void run() {
+    public void run(String data, Integer line, Block block, Player player) {
+        this.splitted = data.split(" ");
         if (!(splitted[1].isEmpty())) {
             try {
                 delay = Integer.parseInt(splitted[1]);
