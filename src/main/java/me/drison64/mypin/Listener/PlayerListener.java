@@ -1,5 +1,6 @@
 package me.drison64.mypin.Listener;
 
+import me.drison64.mypin.Inventories.AddInventory;
 import me.drison64.mypin.Inventories.EnterInventory;
 import me.drison64.mypin.Main;
 import me.drison64.mypin.Managers.InventoryManager;
@@ -77,7 +78,7 @@ public class PlayerListener implements Listener {
 
             event.setCancelled(true);
 
-            inventoryManager.createNew(new EnterInventory(main), player).open(player, null, event);
+            inventoryManager.createNew(new AddInventory(main), player).open(player, null, event);
 
             waitingManager.removeWaiting(player);
             Bukkit.getConsoleSender().sendMessage("pes3");
