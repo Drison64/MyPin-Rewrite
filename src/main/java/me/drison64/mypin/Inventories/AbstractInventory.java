@@ -29,6 +29,8 @@ public abstract class AbstractInventory {
 
     protected Block block;
 
+    protected Inventory inventory;
+
     public int getSize() {
         return size;
     }
@@ -64,7 +66,6 @@ public abstract class AbstractInventory {
     }
 
     private void doOpen(Player player, String altTitle) {
-        Inventory inventory;
         if (altTitle == null) {
             inventory = Bukkit.createInventory(null, size, originalTitle);
             this.currentTitle = originalTitle;
@@ -76,6 +77,8 @@ public abstract class AbstractInventory {
         init(inventory);
 
         player.openInventory(inventory);
+
+        main.getInventoryManager().getInventoryHashMap().put(player, this);
 
         players.add(player.getUniqueId());
     }
@@ -125,5 +128,9 @@ public abstract class AbstractInventory {
     public abstract void init(Inventory inventory);
     protected abstract void click(InventoryClickEvent event);
     protected abstract void close(Player player);
+
+    public Inventory getInventory() {
+        return inventory;
+    }
 
 }

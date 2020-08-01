@@ -10,13 +10,13 @@ public class InventoryManager {
 
     private HashMap<Player, AbstractInventory> inventoryHashMap = new HashMap<>();
 
-    public AbstractInventory createNew(AbstractInventory inventory, Player player) {
+    /*public AbstractInventory createNew(AbstractInventory inventory, Player player) {
 
         inventoryHashMap.put(player, inventory);
 
         return inventory;
 
-    }
+    }*/
 
     public void fire(Event e, Player player) {
         inventoryHashMap.get(player).fire(e);
