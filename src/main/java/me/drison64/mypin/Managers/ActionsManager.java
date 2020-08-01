@@ -2,7 +2,7 @@ package me.drison64.mypin.Managers;
 
 import me.drison64.mypin.Main;
 import me.drison64.mypin.Objects.Action.Action;
-import me.drison64.mypin.Objects.ActionType;
+import me.drison64.mypin.Objects.Action.ActionType;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
@@ -33,7 +33,5 @@ public class ActionsManager {
             action.run(data, line, block, player);
         }
     }
-
-    //TODO Actionsmanager (maybe this is not needed at all lul)
 
 }
