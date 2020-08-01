@@ -1,7 +1,6 @@
 package me.drison64.mypin.Objects.Action;
 
 import me.drison64.mypin.Main;
-import me.drison64.mypin.Objects.ActionType;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 

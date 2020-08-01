@@ -30,7 +30,11 @@ public class ActionsManager {
 
     public void fire(List<String> data, Integer line, Block block, Player player) {
         for (Action action : registeredActions.values()) {
-            action.run(data, line, block, player);
+
+            if (data.get(line - 1).split(" ")[0].equals(action.getType().getFancyname())) {
+                action.run(data, line, block, player);
+            }
+
         }
     }
 
