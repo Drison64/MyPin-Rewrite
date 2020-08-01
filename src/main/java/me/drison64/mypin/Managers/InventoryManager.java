@@ -4,13 +4,10 @@ import me.drison64.mypin.Inventories.AbstractInventory;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class InventoryManager {
 
-    private List<AbstractInventory> inventories = new ArrayList<>();
     private HashMap<Player, AbstractInventory> inventoryHashMap = new HashMap<>();
 
     public AbstractInventory createNew(AbstractInventory inventory, Player player) {
@@ -23,6 +20,10 @@ public class InventoryManager {
 
     public void fire(Event e, Player player) {
         inventoryHashMap.get(player).fire(e);
+    }
+
+    public HashMap<Player, AbstractInventory> getInventoryHashMap() {
+        return inventoryHashMap;
     }
 
 }

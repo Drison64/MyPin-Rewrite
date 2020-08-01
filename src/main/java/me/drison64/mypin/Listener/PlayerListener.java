@@ -91,6 +91,8 @@ public class PlayerListener implements Listener {
 
         waitingManager.removeWaiting(player);
 
+        inventoryManager.getInventoryHashMap().remove(player);
+
         inventoryManager.fire(e, e.getPlayer());
     }
 

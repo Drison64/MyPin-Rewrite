@@ -25,6 +25,9 @@ public class InventoryListener implements Listener {
 
     @EventHandler
     public void onClose(InventoryCloseEvent e) {
+
+        inventoryManager.getInventoryHashMap().remove(e.getPlayer());
+
         inventoryManager.fire(e, (Player) e.getPlayer());
     }
 
