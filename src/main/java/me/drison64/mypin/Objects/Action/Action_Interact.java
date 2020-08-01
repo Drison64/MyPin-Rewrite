@@ -59,7 +59,6 @@ public class Action_Interact extends Action {
                 @Override
                 public void run() {
                     trapDoor.setOpen(false);
-                    runNext(data, line, block, player);
                 }
             }, delay * 20);
 
@@ -78,6 +77,8 @@ public class Action_Interact extends Action {
             player.openInventory(chest.getBlockInventory());
 
         }
+
+        runNext(data, line, block, player);
 
     }
 

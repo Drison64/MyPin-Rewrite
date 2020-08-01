@@ -7,7 +7,10 @@ import me.drison64.mypin.Inventories.EnterInventory;
 import me.drison64.mypin.Listener.InventoryListener;
 import me.drison64.mypin.Listener.PlayerListener;
 import me.drison64.mypin.Managers.*;
+import me.drison64.mypin.Objects.Action.Action_ConsoleCommand;
 import me.drison64.mypin.Objects.Action.Action_Interact;
+import me.drison64.mypin.Objects.Action.Action_PlayerCommand;
+import me.drison64.mypin.Objects.Action.Action_Wait;
 import me.drison64.mypin.Objects.ActionType;
 import me.drison64.mypin.Utils.DefaultActionsUtils;
 import me.drison64.mypin.Utils.DoorUtils;
@@ -53,6 +56,9 @@ public class Main extends JavaPlugin {
 
 
         actionsManager.registerAction(new Action_Interact(this, ActionType.ACTION));
+        actionsManager.registerAction(new Action_Wait(this, ActionType.WAIT));
+        actionsManager.registerAction(new Action_ConsoleCommand(this, ActionType.CONSOLE_COMMAND));
+        actionsManager.registerAction(new Action_PlayerCommand(this, ActionType.PLAYER_COMMAND));
 
         inventoryManager.registerInventory(new AddInventory(this));
         inventoryManager.registerInventory(new EnterInventory(this));
