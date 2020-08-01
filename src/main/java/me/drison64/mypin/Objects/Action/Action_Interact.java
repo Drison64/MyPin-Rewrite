@@ -25,7 +25,7 @@ public class Action_Interact extends Action {
     @Override
     public void run(List<String> data, Integer line, Block block, Player player) {
         this.splitted = data.get(line - 1).split(" ");
-        if (!(splitted[1].isEmpty())) {
+        if (!(splitted[1] == null)) {
             try {
                 delay = Integer.parseInt(splitted[1]);
             } catch (NumberFormatException ex) {

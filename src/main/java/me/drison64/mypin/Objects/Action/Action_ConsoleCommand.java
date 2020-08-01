@@ -26,7 +26,7 @@ public class Action_ConsoleCommand extends Action {
 
         this.splitted = data.get(line - 1).split(" ");
 
-        if (splitted[1].isEmpty()) {
+        if (splitted[1] == null) {
             Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "Error occured at line: " + (line + 1) + ", value is empty.");
         }
 
