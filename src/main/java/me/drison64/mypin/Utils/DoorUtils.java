@@ -2,11 +2,8 @@ package me.drison64.mypin.Utils;
 
 import me.drison64.mypin.Main;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.type.Door;
-
-import java.util.concurrent.BlockingQueue;
 
 public class DoorUtils {
 
@@ -27,9 +24,9 @@ public class DoorUtils {
         }
 
         if (door.getHalf().toString() == "TOP") {
-            return Bukkit.getWorld(String.valueOf(block.getWorld())).getBlockAt(block.getLocation().add(0, -1, 0));
+            return Bukkit.getWorld(block.getWorld().getName()).getBlockAt(block.getLocation().add(0, -1, 0));
         } else if (door.getHalf().toString() == "BOTTOM") {
-            return Bukkit.getWorld(String.valueOf(block.getWorld())).getBlockAt(block.getLocation().add(0, 1, 0));
+            return Bukkit.getWorld(block.getWorld().getName()).getBlockAt(block.getLocation().add(0, 1, 0));
         }
 
         return null;
