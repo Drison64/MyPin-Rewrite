@@ -8,7 +8,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -46,26 +45,22 @@ public abstract class AbstractInventory {
         this.code = "";
     }
 
-    public void open(Player player, String altTitle) {
-        doOpen(player, altTitle);
-    }
+    public void open(Player player, String altTitle, Block block) {
 
-    public void open(Player player, String altTitle, PlayerInteractEvent e) {
-        if (main.getPinUtils().isSet(e.getClickedBlock())) {
-            this.block = e.getClickedBlock();
+        if (main.getPinUtils().isSet(block)) {
+            this.block = block;
         } else {
-            if (main.getDoorUtils().isDoor(e.getClickedBlock())) {
-                if (main.getPinUtils().isSet(main.getDoorUtils().getOtherHalfBlock(e.getClickedBlock()))) {
-                    this.block = main.getDoorUtils().getOtherHalfBlock(e.getClickedBlock());
+            if (main.getDoorUtils().isDoor(block)) {
+                if (main.getPinUtils().isSet(main.getDoorUtils().getOtherHalfBlock(block))) {
+                    this.block = main.getDoorUtils().getOtherHalfBlock(block);
+                } else {
+                    this.block = block;
                 }
             } else {
-                this.block = e.getClickedBlock();
+                this.block = block;
             }
         }
-        doOpen(player, altTitle);
-    }
 
-    private void doOpen(Player player, String altTitle) {
         if (altTitle == null) {
             inventory = Bukkit.createInventory(null, size, originalTitle);
             this.currentTitle = originalTitle;
@@ -81,6 +76,7 @@ public abstract class AbstractInventory {
         main.getInventoryManager().getInventoryHashMap().put(player, this);
 
         players.add(player.getUniqueId());
+
     }
 
     protected void fill(Inventory inventory, ItemStack item) {

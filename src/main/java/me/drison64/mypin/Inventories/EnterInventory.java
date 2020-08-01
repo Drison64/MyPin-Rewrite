@@ -61,7 +61,7 @@ public class EnterInventory extends AbstractInventory {
 
             code = code + slot;
 
-            open((Player) e.getWhoClicked(), InventoryTitleUtils.addCode(e, originalTitle));
+            open((Player) e.getWhoClicked(), InventoryTitleUtils.addCode(e, originalTitle), block);
 
         }
         if (slot == 39) {
@@ -70,11 +70,11 @@ public class EnterInventory extends AbstractInventory {
 
             String removecode = InventoryTitleUtils.removeCode(e, originalTitle);
             if (removecode == null) {
-                open((Player) e.getWhoClicked(), originalTitle);
+                open((Player) e.getWhoClicked(), originalTitle, block);
             } else {
-                open((Player) e.getWhoClicked(), removecode);
+                open((Player) e.getWhoClicked(), removecode, block);
             }
-            open((Player) e.getWhoClicked(), InventoryTitleUtils.removeCode(e, originalTitle));
+            open((Player) e.getWhoClicked(), InventoryTitleUtils.removeCode(e, originalTitle), block);
         } else if (slot == 41) {
 
             Pin pin = pinManager.getNew(block);

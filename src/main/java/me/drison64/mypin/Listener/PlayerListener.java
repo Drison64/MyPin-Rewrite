@@ -50,7 +50,7 @@ public class PlayerListener implements Listener {
 
                     event.setCancelled(true);
 
-                    new EnterInventory(main).open(player, null, event);
+                    new EnterInventory(main).open(player, null, event.getClickedBlock());
 
                     waitingManager.removeWaiting(player);
 
@@ -62,7 +62,7 @@ public class PlayerListener implements Listener {
 
                             event.setCancelled(true);
 
-                            new EnterInventory(main).open(player, null, event);
+                            new EnterInventory(main).open(player, null, event.getClickedBlock());
 
                             waitingManager.removeWaiting(player);
 
@@ -78,7 +78,7 @@ public class PlayerListener implements Listener {
 
             event.setCancelled(true);
 
-            new AddInventory(main).open(player, null, event);
+            new AddInventory(main).open(player, null, event.getClickedBlock());
 
             waitingManager.removeWaiting(player);
             Bukkit.getConsoleSender().sendMessage("pes3");

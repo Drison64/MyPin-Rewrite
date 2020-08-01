@@ -60,7 +60,7 @@ public class AddInventory extends AbstractInventory {
 
             code = code + slot;
 
-            open((Player) e.getWhoClicked(), InventoryTitleUtils.addCode(e, originalTitle));
+            open((Player) e.getWhoClicked(), InventoryTitleUtils.addCode(e, originalTitle), block);
         }
         if (slot == 39) {
             String removecode = InventoryTitleUtils.removeCode(e, originalTitle);
@@ -68,16 +68,22 @@ public class AddInventory extends AbstractInventory {
             code = code.substring(0, code.length() - 1);
 
             if (removecode == null) {
-                open((Player) e.getWhoClicked(), originalTitle);
+                open((Player) e.getWhoClicked(), originalTitle, block);
             } else {
-                open((Player) e.getWhoClicked(), removecode);
+                open((Player) e.getWhoClicked(), removecode, block);
             }
-            open((Player) e.getWhoClicked(), InventoryTitleUtils.removeCode(e, originalTitle));
+            open((Player) e.getWhoClicked(), InventoryTitleUtils.removeCode(e, originalTitle), block);
         } else if (slot == 41) {
 
             Pin pin = pinManager.getNew();
             pin.setPin(code);
-            pin.setWorld(block.getWorld());
+            pin
+                    .
+                    setWorld
+                    (
+                    block
+                            .
+                                    getWorld());
             pin.setOwner(e.getWhoClicked().getUniqueId());
             pin.setCommands(main.getDefaultActionsUtils().getDefaultActions(block));
             pin.setDefaultpermissions("10000");
