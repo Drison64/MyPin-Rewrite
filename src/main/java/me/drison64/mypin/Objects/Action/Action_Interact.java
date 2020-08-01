@@ -25,8 +25,6 @@ public class Action_Interact extends Action {
     public void run(List<String> data, Integer line, Block block, Player player) {
         String[] splitted = data.get(line - 1).split(" ");
 
-        Bukkit.getPlayer("Drison64").sendMessage(splitted);
-
         if (!(splitted.length < 2)) {
             try {
                 delay = Double.parseDouble(splitted[1]);

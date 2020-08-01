@@ -7,7 +7,6 @@ import me.drison64.mypin.Utils.ArrayUtils;
 import me.drison64.mypin.Utils.EncryptionUtils;
 import me.drison64.mypin.Utils.InventoryTitleUtils;
 import me.drison64.mypin.Utils.ItemUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -82,13 +81,7 @@ public class EnterInventory extends AbstractInventory {
 
             String hashed = EncryptionUtils.toSHA256(code, block.getLocation());
 
-            Bukkit.getPlayer("Drison64").sendMessage("Code: " + code);
-            Bukkit.getPlayer("Drison64").sendMessage("Pin: " + pin.getPin());
-            Bukkit.getPlayer("Drison64").sendMessage("Hash: " + hashed);
-
             if (pin.getPin().equals(hashed)) {
-
-                e.getWhoClicked().sendMessage("cock");
 
                 main.getActionsManager().fire(pin.getCommands(), 1, block, (Player) e.getWhoClicked());
 
