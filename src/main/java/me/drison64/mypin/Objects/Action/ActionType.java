@@ -1,8 +1,8 @@
-package me.drison64.mypin.Objects;
+package me.drison64.mypin.Objects.Action;
 
 public enum ActionType {
 
-    ACTION("action"),
+    INTERACT("interact"),
     WAIT("wait"),
     CONSOLE_COMMAND("console_command"),
     PLAYER_COMMAND("player_command");

@@ -38,7 +38,7 @@ public class DefaultActionsUtils {
     public List<String> getDefaultActions(Block block) {
         for (Material material : action_action) {
             if (block.getType() == material) {
-                return Arrays.asList("action");
+                return Arrays.asList("interact");
             }
         }
         return Arrays.asList("");
