@@ -5,8 +5,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
+import org.bukkit.block.data.Openable;
 import org.bukkit.block.data.type.Door;
-import org.bukkit.block.data.type.TrapDoor;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -14,8 +14,7 @@ import java.util.List;
 public class Action_Interact extends Action {
 
     private Main main;
-    private String[] splitted;
-    private int delay = 1;
+    private double delay = 1;
 
     public Action_Interact(Main main, ActionType type) {
         super(main, type);
@@ -24,10 +23,13 @@ public class Action_Interact extends Action {
 
     @Override
     public void run(List<String> data, Integer line, Block block, Player player) {
-        this.splitted = data.get(line - 1).split(" ");
-        if (!(splitted[1] == null)) {
+        String[] splitted = data.get(line - 1).split(" ");
+
+        Bukkit.getPlayer("Drison64").sendMessage(splitted);
+
+        if (!(splitted.length < 2)) {
             try {
-                delay = Integer.parseInt(splitted[1]);
+                delay = Double.parseDouble(splitted[1]);
             } catch (NumberFormatException ex) {
                 Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "Error occured at line: " + (line + 1) + ", value is not a integer");
             }
@@ -35,31 +37,13 @@ public class Action_Interact extends Action {
 
         if (InteractEnum.DOOR.getMaterialList().contains(block.getType())) {
 
-            Door door = (Door) block.getBlockData();
-
-            door.setOpen(true);
-
-            Bukkit.getScheduler().runTaskLater(main, new Runnable() {
-                @Override
-                public void run() {
-                    door.setOpen(false);
-                }
-            }, delay * 20);
+            open(data, line, block, player);
 
         }
 
         if (InteractEnum.TRAPDOOR.getMaterialList().contains(block.getType())) {
 
-            TrapDoor trapDoor = (TrapDoor) block.getBlockData();
-
-            trapDoor.setOpen(true);
-
-            Bukkit.getScheduler().runTaskLater(main, new Runnable() {
-                @Override
-                public void run() {
-                    trapDoor.setOpen(false);
-                }
-            }, delay * 20);
+            open(data, line, block, player);
 
         }
 
@@ -75,10 +59,27 @@ public class Action_Interact extends Action {
 
             player.openInventory(chest.getBlockInventory());
 
+            runNext(data, line, block, player);
+
         }
 
-        runNext(data, line, block, player);
+    }
 
+    public void open(List<String> data, Integer line, Block block, Player player) {
+        Openable door = (Door) block.getBlockData();
+        door.setOpen(true);
+        block.setBlockData(door);
+        block.getState().update();
+
+        Bukkit.getScheduler().runTaskLater(main, new Runnable() {
+            @Override
+            public void run() {
+                door.setOpen(false);
+                block.setBlockData(door);
+                block.getState().update();
+                runNext(data, line, block, player);
+            }
+        }, (long) (delay * 20));
     }
 
 }

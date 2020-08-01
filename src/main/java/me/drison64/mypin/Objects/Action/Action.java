@@ -24,7 +24,7 @@ public abstract class Action {
 
     protected void runNext(List<String> input, Integer line, Block block, Player player) {
 
-        if (input.get(line + 1).isEmpty()) {
+        if (input.size() < line + 1) {
             return;
         }
 

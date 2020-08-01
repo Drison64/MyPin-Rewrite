@@ -56,9 +56,10 @@ public abstract class AbstractInventory {
                 if (main.getPinUtils().isSet(main.getDoorUtils().getOtherHalfBlock(e.getClickedBlock()))) {
                     this.block = main.getDoorUtils().getOtherHalfBlock(e.getClickedBlock());
                 }
+            } else {
+                this.block = e.getClickedBlock();
             }
         }
-        this.block = e.getClickedBlock();
         doOpen(player, altTitle);
     }
 

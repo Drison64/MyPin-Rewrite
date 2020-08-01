@@ -24,7 +24,7 @@ public class Action_Wait extends Action {
 
         this.splitted = data.get(line - 1).split(" ");
 
-        if (!(splitted[1] == null)) {
+        if (!(splitted.length < 2)) {
             try {
                 delay = Integer.parseInt(splitted[1]);
             } catch (NumberFormatException ex) {

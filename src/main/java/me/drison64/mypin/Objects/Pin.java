@@ -52,6 +52,7 @@ public class Pin {
     public void toStorage(Block block) {
         String id = String.valueOf(block.getX()) + String.valueOf(block.getY()) + String.valueOf(block.getZ());
         //Always pin, world, owner, disabled and defaultpermissions are set.
+        Bukkit.getPlayer("Drison64").sendMessage("toStorage: " + this.pin);
         data.get().set("data.blocks." + id + ".pin", EncryptionUtils.toSHA256(this.pin, block.getLocation()));
         data.get().set("data.blocks." + id + ".world", this.world.getName());
         data.get().set("data.blocks." + id + ".owner", this.owner.toString());
@@ -96,10 +97,27 @@ public class Pin {
         this.data = configManager.getConfig(ConfigType.DATA);
     }
 
-    public Pin(Block block, Main main) {
+    public Pin(Block blockInput, Main main) {
         this.main = main;
         this.configManager = main.getConfigManager();
         this.data = configManager.getConfig(ConfigType.DATA);
+        Block block = null;
+
+        if (main.getPinUtils().isSet(blockInput)) {
+            block = blockInput;
+        } else {
+            if (main.getDoorUtils().isDoor(blockInput)) {
+                if (main.getPinUtils().isSet(main.getDoorUtils().getOtherHalfBlock(blockInput))) {
+                    block = main.getDoorUtils().getOtherHalfBlock(blockInput);
+                }
+            } else {
+                block = blockInput;
+            }
+        }
+
+        if (block == null) {
+            return;
+        }
 
         String id = String.valueOf(block.getX()) + String.valueOf(block.getY()) + String.valueOf(block.getZ());
         if (!(data.get().isSet("data.blocks." + id))) {

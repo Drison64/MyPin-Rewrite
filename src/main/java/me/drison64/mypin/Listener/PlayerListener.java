@@ -1,14 +1,13 @@
 package me.drison64.mypin.Listener;
 
+import me.drison64.mypin.Inventories.EnterInventory;
 import me.drison64.mypin.Main;
 import me.drison64.mypin.Managers.InventoryManager;
-import me.drison64.mypin.Managers.PinManager;
 import me.drison64.mypin.Managers.WaitingManager;
 import me.drison64.mypin.Objects.ClickType;
 import me.drison64.mypin.Utils.DoorUtils;
 import me.drison64.mypin.Utils.PinUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.block.data.type.Door;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -50,7 +49,7 @@ public class PlayerListener implements Listener {
 
                     event.setCancelled(true);
 
-                    inventoryManager.getInventory(ClickType.ENTER).open(player, null, event);
+                    inventoryManager.createNew(new EnterInventory(main), player).open(player, null, event);
 
                     waitingManager.removeWaiting(player);
 
@@ -62,7 +61,7 @@ public class PlayerListener implements Listener {
 
                             event.setCancelled(true);
 
-                            inventoryManager.getInventory(ClickType.ENTER).open(player, null, event);
+                            inventoryManager.createNew(new EnterInventory(main), player).open(player, null, event);
 
                             waitingManager.removeWaiting(player);
 
@@ -78,7 +77,7 @@ public class PlayerListener implements Listener {
 
             event.setCancelled(true);
 
-            inventoryManager.getInventory(type).open(player, null, event);
+            inventoryManager.createNew(new EnterInventory(main), player).open(player, null, event);
 
             waitingManager.removeWaiting(player);
             Bukkit.getConsoleSender().sendMessage("pes3");
@@ -91,7 +90,7 @@ public class PlayerListener implements Listener {
 
         waitingManager.removeWaiting(player);
 
-        inventoryManager.fire(e);
+        inventoryManager.fire(e, e.getPlayer());
     }
 
 }

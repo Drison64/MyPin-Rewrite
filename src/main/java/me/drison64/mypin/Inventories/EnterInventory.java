@@ -7,6 +7,7 @@ import me.drison64.mypin.Utils.ArrayUtils;
 import me.drison64.mypin.Utils.EncryptionUtils;
 import me.drison64.mypin.Utils.InventoryTitleUtils;
 import me.drison64.mypin.Utils.ItemUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -58,9 +59,16 @@ public class EnterInventory extends AbstractInventory {
         int slot = e.getRawSlot();
         e.setCancelled(true);
         if (ArrayUtils.contains(number_buttons, slot)) {
+
+            code = code + slot;
+
             open((Player) e.getWhoClicked(), InventoryTitleUtils.addCode(e, originalTitle));
+
         }
         if (slot == 39) {
+
+            code = code.substring(0, code.length() - 1);
+
             String removecode = InventoryTitleUtils.removeCode(e, originalTitle);
             if (removecode == null) {
                 open((Player) e.getWhoClicked(), originalTitle);
@@ -74,7 +82,13 @@ public class EnterInventory extends AbstractInventory {
 
             String hashed = EncryptionUtils.toSHA256(code, block.getLocation());
 
+            Bukkit.getPlayer("Drison64").sendMessage("Code: " + code);
+            Bukkit.getPlayer("Drison64").sendMessage("Pin: " + pin.getPin());
+            Bukkit.getPlayer("Drison64").sendMessage("Hash: " + hashed);
+
             if (pin.getPin().equals(hashed)) {
+
+                e.getWhoClicked().sendMessage("cock");
 
                 main.getActionsManager().fire(pin.getCommands(), 1, block, (Player) e.getWhoClicked());
 

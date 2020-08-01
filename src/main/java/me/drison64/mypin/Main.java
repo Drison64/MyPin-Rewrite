@@ -2,8 +2,6 @@ package me.drison64.mypin;
 
 import me.drison64.mypin.Configurations.Config;
 import me.drison64.mypin.Configurations.Data;
-import me.drison64.mypin.Inventories.AddInventory;
-import me.drison64.mypin.Inventories.EnterInventory;
 import me.drison64.mypin.Listener.InventoryListener;
 import me.drison64.mypin.Listener.PlayerListener;
 import me.drison64.mypin.Managers.*;
@@ -55,9 +53,6 @@ public class Main extends JavaPlugin {
         actionsManager.registerAction(new Action_Wait(this, ActionType.WAIT));
         actionsManager.registerAction(new Action_ConsoleCommand(this, ActionType.CONSOLE_COMMAND));
         actionsManager.registerAction(new Action_PlayerCommand(this, ActionType.PLAYER_COMMAND));
-
-        inventoryManager.registerInventory(new AddInventory(this));
-        inventoryManager.registerInventory(new EnterInventory(this));
 
         pluginManager.registerEvents(new InventoryListener(this), this);
         pluginManager.registerEvents(new PlayerListener(this), this);
