@@ -74,7 +74,11 @@ public class EnterInventory extends AbstractInventory {
 
             String hashed = EncryptionUtils.toSHA256(code, block.getLocation());
 
+            if (pin.getPin().equals(hashed)) {
 
+                main.getActionsManager().fire(pin.getCommands(), 1, block, (Player) e.getWhoClicked());
+
+            }
 
         }
     }
