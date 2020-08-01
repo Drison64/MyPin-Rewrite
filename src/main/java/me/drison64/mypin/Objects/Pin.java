@@ -8,7 +8,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.event.block.BlockPhysicsEvent;
 
 import java.util.List;
 import java.util.UUID;
@@ -110,6 +109,9 @@ public class Pin {
             if (Bukkit.getWorld(data.get().getString("data.blocks." + id + ".world")) != null) {
                 this.world = Bukkit.getWorld(data.get().getString("data.blocks." + id + ".world"));
             }
+        }
+        if (data.get().isSet("data.blocks." + id + ".pin")) {
+            this.pin = data.get().getString("data.blocks." + id + ".pin");
         }
         if (data.get().isSet("data.blocks." + id + ".owner")) {
             this.owner = UUID.fromString(data.get().getString("data.blocks." + id + ".owner"));
