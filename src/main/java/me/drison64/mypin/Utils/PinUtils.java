@@ -17,6 +17,9 @@ public class PinUtils {
     }
 
     public boolean isSet(Block block) {
+        if (block == null) {
+            return false;
+        }
         Location loc = block.getLocation();
         return configManager.getConfig(ConfigType.DATA).get().isSet("data.blocks." + loc.getBlockX() + loc.getBlockY() + loc.getBlockZ());
     }
