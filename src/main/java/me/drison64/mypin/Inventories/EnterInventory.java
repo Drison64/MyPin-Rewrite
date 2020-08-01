@@ -78,6 +78,8 @@ public class EnterInventory extends AbstractInventory {
 
                 main.getActionsManager().fire(pin.getCommands(), 1, block, (Player) e.getWhoClicked());
 
+                e.getWhoClicked().closeInventory();
+
             }
 
         }

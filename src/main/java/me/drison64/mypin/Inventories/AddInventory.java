@@ -84,7 +84,7 @@ public class AddInventory extends AbstractInventory {
             pin.setDisabled(false);
             pin.toStorage(block);
 
-            close((Player) e.getWhoClicked());
+            e.getWhoClicked().closeInventory();
 
         }
     }
