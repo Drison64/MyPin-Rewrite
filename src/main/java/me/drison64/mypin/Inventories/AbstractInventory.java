@@ -12,6 +12,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -48,6 +49,15 @@ public abstract class AbstractInventory {
     }
 
     public void open(Player player, String altTitle, PlayerInteractEvent e) {
+        if (main.getPinUtils().isSet(e.getClickedBlock())) {
+            this.block = e.getClickedBlock();
+        } else {
+            if (main.getDoorUtils().isDoor(e.getClickedBlock())) {
+                if (main.getPinUtils().isSet(main.getDoorUtils().getOtherHalfBlock(e.getClickedBlock()))) {
+                    this.block = main.getDoorUtils().getOtherHalfBlock(e.getClickedBlock());
+                }
+            }
+        }
         this.block = e.getClickedBlock();
         doOpen(player, altTitle);
     }
