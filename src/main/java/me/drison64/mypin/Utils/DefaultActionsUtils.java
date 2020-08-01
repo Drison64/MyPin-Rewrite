@@ -23,6 +23,14 @@ public class DefaultActionsUtils {
                 Material.ACACIA_DOOR,
                 Material.DARK_OAK_DOOR,
 
+                Material.IRON_TRAPDOOR,
+                Material.OAK_TRAPDOOR,
+                Material.SPRUCE_TRAPDOOR,
+                Material.BIRCH_TRAPDOOR,
+                Material.JUNGLE_TRAPDOOR,
+                Material.ACACIA_TRAPDOOR,
+                Material.DARK_OAK_TRAPDOOR,
+
                 Material.STONE_BUTTON,
                 Material.OAK_BUTTON,
                 Material.SPRUCE_BUTTON,

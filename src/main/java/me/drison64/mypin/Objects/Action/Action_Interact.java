@@ -6,7 +6,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.data.Openable;
-import org.bukkit.block.data.type.Door;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -53,18 +52,23 @@ public class Action_Interact extends Action {
 
         if (InteractEnum.CHEST.getMaterialList().contains(block.getType())) {
 
-            Chest chest = (Chest) block.getBlockData();
+            Chest chest = (Chest) block.getState();
 
-            player.openInventory(chest.getBlockInventory());
+            Bukkit.getScheduler().runTaskLater(main, new Runnable() {
+                @Override
+                public void run() {
+                    player.openInventory(chest.getBlockInventory());
 
-            runNext(data, line, block, player);
+                    runNext(data, line, block, player);
+                }
+            }, 1L);
 
         }
 
     }
 
     public void open(List<String> data, Integer line, Block block, Player player) {
-        Openable door = (Door) block.getBlockData();
+        Openable door = (Openable) block.getBlockData();
         door.setOpen(true);
         block.setBlockData(door);
         block.getState().update();
