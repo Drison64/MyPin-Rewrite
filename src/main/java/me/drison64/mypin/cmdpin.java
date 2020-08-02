@@ -49,12 +49,16 @@ public class cmdpin implements CommandExecutor {
             return false;
         }
         Player player = (Player) sender;
-        if (args[0].isEmpty()) {
+        if (args[0].length() == 0) {
             player.sendMessage("YOU FUCKING CUNT");
         }
 
         if (args[0].equals("add")) {
             waitingManager.addWaiting(player, ClickType.ADD);
+        }
+
+        if (args[0].equals("edit")) {
+            waitingManager.addWaiting(player, ClickType.EDIT);
         }
 
         return false;

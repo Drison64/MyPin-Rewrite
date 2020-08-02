@@ -25,11 +25,13 @@
 package me.drison64.mypin.Listener;
 
 import me.drison64.mypin.Inventories.AddInventory;
+import me.drison64.mypin.Inventories.EditInventory;
 import me.drison64.mypin.Inventories.EnterInventory;
 import me.drison64.mypin.Main;
 import me.drison64.mypin.Managers.InventoryManager;
 import me.drison64.mypin.Managers.WaitingManager;
 import me.drison64.mypin.Objects.ClickType;
+import me.drison64.mypin.Objects.EditInventoryType;
 import me.drison64.mypin.Utils.DoorUtils;
 import me.drison64.mypin.Utils.PinUtils;
 import org.bukkit.Bukkit;
@@ -102,7 +104,10 @@ public class PlayerListener implements Listener {
 
             event.setCancelled(true);
 
-            new AddInventory(main).open(player, null, event.getClickedBlock());
+            switch (type) {
+                case ADD: new AddInventory(main).open(player, null, event.getClickedBlock());
+                case EDIT: new EditInventory(main, EditInventoryType.INFO, 1).open(player, null, event.getClickedBlock());
+            }
 
             waitingManager.removeWaiting(player);
             Bukkit.getConsoleSender().sendMessage("pes3");
