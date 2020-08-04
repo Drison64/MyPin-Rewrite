@@ -63,7 +63,7 @@ public class Action_Wait extends Action {
                 runNext(data, line, block, player);
 
             }
-        }, delay * 20);
+        }, (long) delay * 20);
 
     }
 
