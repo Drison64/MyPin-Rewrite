@@ -44,6 +44,7 @@ public class EditInventory extends AbstractInventory {
     private Main main;
     private EditInventoryType type;
     private Integer page;
+    private Integer pages;
 
     public EditInventory(Main main, EditInventoryType type, Integer page) {
         super(main, "Pin - Edit", 54);
@@ -115,6 +116,10 @@ public class EditInventory extends AbstractInventory {
             pages++;
         }
 
+        inventory = Bukkit.createInventory(null, 54, "Pin- Edit Commands (" + page + "/" + pages + ")");
+
+        this.pages = pages;
+
         for (int i : slots) {
             inventory.setItem(i, ItemUtils.mkitem(1, Material.GRAY_STAINED_GLASS_PANE, " ", Arrays.asList("")));
         }
@@ -141,8 +146,6 @@ public class EditInventory extends AbstractInventory {
 
         List<String> actionslist = main.getConfigManager().getConfig(ConfigType.DATA).get().getStringList("data.blocks." + block.getLocation().getBlockX() + block.getLocation().getBlockY() + block.getLocation().getBlockZ() + ".commands");
         for (int i = 0; i < 45; i++) {
-            //Bukkit.getPlayer("Drison64").sendMessage(String.valueOf(actionslist.get(i)));
-
             if (i + (45 * (page - 1)) >= actionslist.size()) {
                 break;
             }
@@ -174,7 +177,25 @@ public class EditInventory extends AbstractInventory {
 
         } else if (EditInventoryType.COMMANDS == type) {
 
+            if (event.getRawSlot() == 45) {
+
+                new EditInventory(main, EditInventoryType.INFO, 1).open((Player) event.getWhoClicked(), "Pin - Edit", block);
+
+            }
+
+            if (event.getRawSlot() == 53) {
+
+                new EditInventory(main, EditInventoryType.PERMISSONS, 1).open((Player) event.getWhoClicked(), "Pin - Edit Permissions", block);
+
+            }
+
         } else if (EditInventoryType.PERMISSONS == type) {
+
+            if (event.getRawSlot() == 45) {
+
+                new EditInventory(main, EditInventoryType.COMMANDS, 1).open((Player) event.getWhoClicked(), "Pin- Edit Commands (" + page + "/" + getPages() + ")", block);
+
+            }
 
         }
 
@@ -183,6 +204,16 @@ public class EditInventory extends AbstractInventory {
     @Override
     protected void close(Player player) {
 
+    }
+
+    public int getPages() {
+        int actions = main.getConfigManager().getConfig(ConfigType.DATA).get().getStringList("data.blocks." + block.getLocation().getBlockX() + block.getLocation().getBlockY() + block.getLocation().getBlockZ() + ".commands").size();
+        int pages = actions / 45;
+        if (actions % 45 != 0) pages++;
+        if (pages == 0) {
+            pages++;
+        }
+        return pages;
     }
 
 }
