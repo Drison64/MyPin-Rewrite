@@ -62,6 +62,8 @@ public class EditInventory extends AbstractInventory {
             initCommands(inventory, page);
         } else if (type == EditInventoryType.PERMISSONS) {
             initPermissions(inventory);
+        } else if (type == EditInventoryType.COMMANDS_ADD) {
+
         }
 
         Bukkit.getPlayer("Drison64").sendMessage(type.toString());

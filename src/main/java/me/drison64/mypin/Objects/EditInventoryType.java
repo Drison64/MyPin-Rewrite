@@ -28,6 +28,8 @@ public enum EditInventoryType {
 
     INFO,
     COMMANDS,
+    COMMANDS_REMOVE,
+    COMMANDS_ADD,
     PERMISSONS;
 
 }
