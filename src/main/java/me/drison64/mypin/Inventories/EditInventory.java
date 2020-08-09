@@ -166,6 +166,10 @@ public class EditInventory extends AbstractInventory {
         return inventory;
     }
 
+    public Inventory initCommandsDelete(Inventory inventory) {
+        return inventory;
+    }
+
     @Override
     protected void click(InventoryClickEvent event) {
 
