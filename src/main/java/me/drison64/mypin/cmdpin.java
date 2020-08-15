@@ -61,6 +61,10 @@ public class cmdpin implements CommandExecutor {
             waitingManager.addWaiting(player, ClickType.EDIT);
         }
 
+        if (args[0].equals("clear")) {
+            waitingManager.removeWaiting(player);
+        }
+
         return false;
     }
 

@@ -24,7 +24,7 @@
 
 package me.drison64.mypin;
 
-import me.drison64.mypin.Managers.InventoryManager;
+import me.drison64.inventoryapi.InventoryManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

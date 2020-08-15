@@ -24,24 +24,106 @@
 
 package me.drison64.mypin.Inventories;
 
+import me.drison64.inventoryapi.CustomInventory;
+import me.drison64.inventoryapi.ItemStackUtils;
 import me.drison64.mypin.Main;
 import me.drison64.mypin.Objects.ConfigType;
 import me.drison64.mypin.Objects.EditInventoryType;
-import me.drison64.mypin.Utils.ItemUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.Inventory;
+import org.bukkit.event.Event;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
 import java.util.UUID;
 
-public class EditInventory extends AbstractInventory {
+public class EditInventory extends CustomInventory {
 
     private Main main;
+    private EditInventoryType type;
+    private Integer page;
+    private Integer pages;
+    private Block block;
+
+    public EditInventory(Main main, EditInventoryType type, Integer page, Block block) {
+        this.main = main;
+        this.type = type;
+        this.page = page;
+        this.block = block;
+    }
+
+    @Override
+    protected void init(HashMap<Integer, ItemStack> hashMap) {
+
+        title = "Pin edit";
+        size = 54;
+
+        if (type == EditInventoryType.INFO) {
+            initInfo(hashMap);
+        } else if (type == EditInventoryType.COMMANDS) {
+            initCommands(hashMap, page);
+        } else if (type == EditInventoryType.PERMISSONS) {
+            initPermissions(hashMap);
+        }
+
+    }
+
+    public void initInfo(HashMap<Integer, ItemStack> hashMap) {
+
+        Bukkit.getPlayer("Drison64").sendMessage("pejsek");
+        int[] slots = {46,47,51,52};
+
+        for (int i : slots) {
+            set(i, ItemStackUtils.mkitem(1, Material.GRAY_STAINED_GLASS_PANE, " ", Arrays.asList("")));
+        }
+
+        String suuid = main.getConfigManager().getConfig(ConfigType.DATA).get().getString("data.blocks." + block.getLocation().getBlockX() + block.getLocation().getBlockY() + block.getLocation().getBlockZ() + ".owner");
+        UUID uuid = UUID.fromString(suuid);
+        Player player = Bukkit.getServer().getPlayer(uuid);
+
+        boolean isset = main.getConfigManager().getConfig(ConfigType.DATA).get().isSet("data.blocks." + block.getLocation().getBlockX() + block.getLocation().getBlockY() + block.getLocation().getBlockZ() + ".disabled");
+        if (isset) {
+            boolean disabled = main.getConfigManager().getConfig(ConfigType.DATA).get().getBoolean("data.blocks." + block.getLocation().getBlockX() + block.getLocation().getBlockY() + block.getLocation().getBlockZ() + ".disabled");
+            if (disabled) {
+                set(45, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/3cc470ae2631efdfaf967b369413bc2451cd7a39465da7836a6c7a14e877", ChatColor.DARK_RED + "DISABLED", Arrays.asList("")));
+            } else {
+                set(45, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/3296d3e1493fa32d827a3635a683e5bded64914d75e73aacdccba46d8fd90", ChatColor.GREEN + "ENABLED", Arrays.asList("")));
+            }
+        } else {
+            set(45, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/3296d3e1493fa32d827a3635a683e5bded64914d75e73aacdccba46d8fd90", ChatColor.GREEN + "ENABLED", Arrays.asList("")));
+        }
+
+        set(48, ItemStackUtils.mkitem(1, Material.RED_STAINED_GLASS_PANE, " ", Arrays.asList("")));
+        set(49, ItemStackUtils.mkitem(1, Material.BARRIER, ChatColor.DARK_RED + "DELETE THIS PIN", Arrays.asList("")));
+        set(50, ItemStackUtils.mkitem(1, Material.RED_STAINED_GLASS_PANE, " ", Arrays.asList("")));
+        set(53, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/ea26e5ff186778eee6dbf98a15074384c3211d16be0f29460bbd964aeff", "Next", Arrays.asList("")));
+        set(19, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/caf1b280cab59f4469dab9f1a2af7927ed96a81df1e24d50a8e3984abfe4044", "ID: " + block.getLocation().getBlockX() + block.getLocation().getBlockY() + block.getLocation().getBlockZ(), Arrays.asList("")));
+        set(22, ItemStackUtils.mkskullname(1, player, "Owner: " + player.getDisplayName(), Arrays.asList("")));
+        set(25, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/b1dd4fe4a429abd665dfdb3e21321d6efa6a6b5e7b956db9c5d59c9efab25", "Location:", Arrays.asList("", "X: " + block.getLocation().getBlockX(), "Y: " + block.getLocation().getBlockY(), "Z: " + block.getLocation().getBlockZ(), "World: " + block.getLocation().getWorld().toString())));
+    }
+
+    public void initCommands(HashMap<Integer, ItemStack> hashMap, Integer page) {
+
+
+
+    }
+
+    public void initPermissions(HashMap<Integer, ItemStack> hashMap) {
+
+
+
+    }
+
+    @Override
+    protected void fire(Event event) {
+
+    }
+
+    /*private Main main;
     private EditInventoryType type;
     private Integer page;
     private Integer pages;
@@ -220,6 +302,6 @@ public class EditInventory extends AbstractInventory {
             pages++;
         }
         return pages;
-    }
+    }*/
 
 }

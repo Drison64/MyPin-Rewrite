@@ -24,11 +24,10 @@
 
 package me.drison64.mypin.Listener;
 
+import me.drison64.inventoryapi.InventoryManager;
 import me.drison64.mypin.Inventories.AddInventory;
 import me.drison64.mypin.Inventories.EditInventory;
-import me.drison64.mypin.Inventories.EnterInventory;
 import me.drison64.mypin.Main;
-import me.drison64.mypin.Managers.InventoryManager;
 import me.drison64.mypin.Managers.WaitingManager;
 import me.drison64.mypin.Objects.ClickType;
 import me.drison64.mypin.Objects.EditInventoryType;
@@ -76,7 +75,7 @@ public class PlayerListener implements Listener {
 
                     event.setCancelled(true);
 
-                    new EnterInventory(main).open(player, null, event.getClickedBlock());
+                    //TODO new EnterInventory(main).open(player, null, event.getClickedBlock());
 
                     waitingManager.removeWaiting(player);
 
@@ -88,7 +87,7 @@ public class PlayerListener implements Listener {
 
                             event.setCancelled(true);
 
-                            new EnterInventory(main).open(player, null, event.getClickedBlock());
+                            //TODO new EnterInventory(main).open(player, null, event.getClickedBlock());
 
                             waitingManager.removeWaiting(player);
 
@@ -104,10 +103,8 @@ public class PlayerListener implements Listener {
 
             event.setCancelled(true);
 
-            switch (type) {
-                case ADD: new AddInventory(main).open(player, null, event.getClickedBlock());
-                case EDIT: new EditInventory(main, EditInventoryType.INFO, 1).open(player, null, event.getClickedBlock());
-            }
+            if (type == ClickType.ADD) main.getInventoryManager().open(new AddInventory(main, event.getClickedBlock(), ""), player);
+            else if (type == ClickType.EDIT) main.getInventoryManager().open(new EditInventory(main, EditInventoryType.INFO, 1, event.getClickedBlock()), player);
 
             waitingManager.removeWaiting(player);
             Bukkit.getConsoleSender().sendMessage("pes3");
@@ -120,9 +117,7 @@ public class PlayerListener implements Listener {
 
         waitingManager.removeWaiting(player);
 
-        inventoryManager.getInventoryHashMap().remove(player);
-
-        inventoryManager.fire(e, e.getPlayer());
+        inventoryManager.fire(player, e);
     }
 
 }

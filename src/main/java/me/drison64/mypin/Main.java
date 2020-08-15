@@ -24,11 +24,15 @@
 
 package me.drison64.mypin;
 
+import me.drison64.inventoryapi.InventoryAPI;
+import me.drison64.inventoryapi.InventoryManager;
 import me.drison64.mypin.Configurations.Config;
 import me.drison64.mypin.Configurations.Data;
-import me.drison64.mypin.Listener.InventoryListener;
 import me.drison64.mypin.Listener.PlayerListener;
-import me.drison64.mypin.Managers.*;
+import me.drison64.mypin.Managers.ActionsManager;
+import me.drison64.mypin.Managers.ConfigManager;
+import me.drison64.mypin.Managers.PinManager;
+import me.drison64.mypin.Managers.WaitingManager;
 import me.drison64.mypin.Objects.Action.*;
 import me.drison64.mypin.Utils.DefaultActionsUtils;
 import me.drison64.mypin.Utils.DoorUtils;
@@ -48,9 +52,12 @@ public class Main extends JavaPlugin {
     private PinUtils pinUtils;
     private DefaultActionsUtils defaultActionsUtils;
     private DoorUtils doorUtils;
+    private InventoryAPI inventoryAPI;
 
     @Override
     public void onEnable() {
+
+        inventoryAPI = new InventoryAPI(this);
 
         actionsManager = new ActionsManager(this);
 
@@ -58,7 +65,7 @@ public class Main extends JavaPlugin {
 
         doorUtils = new DoorUtils(this);
 
-        inventoryManager = new InventoryManager();
+        inventoryManager = inventoryAPI.getInventoryManager();
         //inventoryManager.registerInventory(new EditInventory(this));
 
         waitingManager = new WaitingManager();
@@ -78,7 +85,6 @@ public class Main extends JavaPlugin {
         actionsManager.registerAction(new Action_ConsoleCommand(this, ActionType.CONSOLE_COMMAND));
         actionsManager.registerAction(new Action_PlayerCommand(this, ActionType.PLAYER_COMMAND));
 
-        pluginManager.registerEvents(new InventoryListener(this), this);
         pluginManager.registerEvents(new PlayerListener(this), this);
 
         configManager.registerConfig(new Config(this));
