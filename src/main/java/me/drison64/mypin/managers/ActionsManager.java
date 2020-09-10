@@ -22,50 +22,44 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin;
+package me.drison64.mypin.managers;
 
-import me.drison64.mypin.managers.WaitingManager;
-import me.drison64.mypin.objects.ClickType;
-import me.drison64.mypin.objects.ErrorsEnum;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
+import me.drison64.mypin.Main;
+import me.drison64.mypin.objects.Action.Action;
+import me.drison64.mypin.objects.Action.ActionType;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-public class cmdpin implements CommandExecutor {
+import java.util.HashMap;
+import java.util.List;
+
+public class ActionsManager {
 
     private Main main;
-    private WaitingManager waitingManager;
 
-    public cmdpin(Main main) {
+    private HashMap<ActionType, Action> registeredActions;
+
+    public ActionsManager(Main main) {
         this.main = main;
-        this.waitingManager = main.getWaitingManager();
+        this.registeredActions = new HashMap<>();
     }
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(ErrorsEnum.COMMAND_ONLY_PLAYER.getErrorString());
-            return false;
-        }
-        Player player = (Player) sender;
-        if (args[0].length() == 0) {
-            player.sendMessage("YOU FUCKING CUNT");
-        }
+    public Action get(ActionType type) {
+        return registeredActions.get(type);
+    }
 
-        if (args[0].equals("add")) {
-            waitingManager.addWaiting(player, ClickType.ADD);
-        }
+    public void registerAction(Action action) {
+        registeredActions.put(action.getType(), action);
+    }
 
-        if (args[0].equals("edit")) {
-            waitingManager.addWaiting(player, ClickType.EDIT);
-        }
+    public void fire(List<String> data, Integer line, Block block, Player player) {
+        for (Action action : registeredActions.values()) {
 
-        if (args[0].equals("clear")) {
-            waitingManager.removeWaiting(player);
-        }
+            if (data.get(line - 1).split(" ")[0].equals(action.getType().getFancyname())) {
+                action.run(data, line, block, player);
+            }
 
-        return false;
+        }
     }
 
 }

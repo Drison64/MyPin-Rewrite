@@ -22,50 +22,32 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin;
+package me.drison64.mypin.managers;
 
-import me.drison64.mypin.managers.WaitingManager;
 import me.drison64.mypin.objects.ClickType;
-import me.drison64.mypin.objects.ErrorsEnum;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class cmdpin implements CommandExecutor {
+import java.util.HashMap;
+import java.util.UUID;
 
-    private Main main;
-    private WaitingManager waitingManager;
+public class WaitingManager {
 
-    public cmdpin(Main main) {
-        this.main = main;
-        this.waitingManager = main.getWaitingManager();
+    private HashMap<UUID, ClickType> waiting;
+
+    public WaitingManager() {
+        this.waiting = new HashMap<>();
     }
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(ErrorsEnum.COMMAND_ONLY_PLAYER.getErrorString());
-            return false;
-        }
-        Player player = (Player) sender;
-        if (args[0].length() == 0) {
-            player.sendMessage("YOU FUCKING CUNT");
-        }
+    public void addWaiting(Player player, ClickType type) {
+        waiting.put(player.getUniqueId(), type);
+    }
 
-        if (args[0].equals("add")) {
-            waitingManager.addWaiting(player, ClickType.ADD);
-        }
+    public void removeWaiting(Player player) {
+        waiting.remove(player.getUniqueId());
+    }
 
-        if (args[0].equals("edit")) {
-            waitingManager.addWaiting(player, ClickType.EDIT);
-        }
-
-        if (args[0].equals("clear")) {
-            waitingManager.removeWaiting(player);
-        }
-
-        return false;
+    public ClickType getWaiting(Player player) {
+        return waiting.get(player.getUniqueId());
     }
 
 }

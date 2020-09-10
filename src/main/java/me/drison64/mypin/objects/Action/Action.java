@@ -22,50 +22,38 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin;
+package me.drison64.mypin.objects.Action;
 
-import me.drison64.mypin.managers.WaitingManager;
-import me.drison64.mypin.objects.ClickType;
-import me.drison64.mypin.objects.ErrorsEnum;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
+import me.drison64.mypin.Main;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-public class cmdpin implements CommandExecutor {
+import java.util.List;
+
+public abstract class Action {
 
     private Main main;
-    private WaitingManager waitingManager;
+    private ActionType type;
 
-    public cmdpin(Main main) {
+    public Action(Main main, ActionType type) {
         this.main = main;
-        this.waitingManager = main.getWaitingManager();
+        this.type = type;
     }
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(ErrorsEnum.COMMAND_ONLY_PLAYER.getErrorString());
-            return false;
-        }
-        Player player = (Player) sender;
-        if (args[0].length() == 0) {
-            player.sendMessage("YOU FUCKING CUNT");
+    public abstract void run(List<String> input, Integer line, Block block, Player player);
+
+    public ActionType getType() {
+        return type;
+    }
+
+    protected void runNext(List<String> input, Integer line, Block block, Player player) {
+
+        if (input.size() < line + 1) {
+            return;
         }
 
-        if (args[0].equals("add")) {
-            waitingManager.addWaiting(player, ClickType.ADD);
-        }
+        main.getActionsManager().get(type).run(input, line + 1 , block, player);
 
-        if (args[0].equals("edit")) {
-            waitingManager.addWaiting(player, ClickType.EDIT);
-        }
-
-        if (args[0].equals("clear")) {
-            waitingManager.removeWaiting(player);
-        }
-
-        return false;
     }
 
 }

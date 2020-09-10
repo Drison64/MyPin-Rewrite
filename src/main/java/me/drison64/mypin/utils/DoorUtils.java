@@ -22,50 +22,51 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin;
+package me.drison64.mypin.utils;
 
-import me.drison64.mypin.managers.WaitingManager;
-import me.drison64.mypin.objects.ClickType;
-import me.drison64.mypin.objects.ErrorsEnum;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import me.drison64.mypin.Main;
+import org.bukkit.Bukkit;
+import org.bukkit.block.Block;
+import org.bukkit.block.data.type.Door;
 
-public class cmdpin implements CommandExecutor {
+public class DoorUtils {
 
     private Main main;
-    private WaitingManager waitingManager;
 
-    public cmdpin(Main main) {
+    public DoorUtils(Main main) {
         this.main = main;
-        this.waitingManager = main.getWaitingManager();
     }
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(ErrorsEnum.COMMAND_ONLY_PLAYER.getErrorString());
+    public Block getOtherHalfBlock(Block block) {
+
+        Door door;
+
+        try {
+            door = (Door) block.getBlockData();
+        } catch (ClassCastException ex) {
+            return null;
+        }
+
+        if (door.getHalf().toString() == "TOP") {
+            return Bukkit.getWorld(block.getWorld().getName()).getBlockAt(block.getLocation().add(0, -1, 0));
+        } else if (door.getHalf().toString() == "BOTTOM") {
+            return Bukkit.getWorld(block.getWorld().getName()).getBlockAt(block.getLocation().add(0, 1, 0));
+        }
+
+        return null;
+
+    }
+
+    public Boolean isDoor(Block block) {
+
+        try {
+            Door door = (Door) block.getBlockData();
+        } catch (ClassCastException ex) {
             return false;
         }
-        Player player = (Player) sender;
-        if (args[0].length() == 0) {
-            player.sendMessage("YOU FUCKING CUNT");
-        }
 
-        if (args[0].equals("add")) {
-            waitingManager.addWaiting(player, ClickType.ADD);
-        }
+        return true;
 
-        if (args[0].equals("edit")) {
-            waitingManager.addWaiting(player, ClickType.EDIT);
-        }
-
-        if (args[0].equals("clear")) {
-            waitingManager.removeWaiting(player);
-        }
-
-        return false;
     }
 
 }

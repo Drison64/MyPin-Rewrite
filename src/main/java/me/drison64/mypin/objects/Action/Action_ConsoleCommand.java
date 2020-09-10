@@ -22,50 +22,43 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin;
+package me.drison64.mypin.objects.Action;
 
-import me.drison64.mypin.managers.WaitingManager;
-import me.drison64.mypin.objects.ClickType;
-import me.drison64.mypin.objects.ErrorsEnum;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
+import me.drison64.mypin.Main;
+import me.drison64.mypin.utils.StringStitcherUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-public class cmdpin implements CommandExecutor {
+import java.util.List;
+
+public class Action_ConsoleCommand extends Action {
 
     private Main main;
-    private WaitingManager waitingManager;
+    private String[] splitted;
+    private String command;
+    private int delay = 1;
 
-    public cmdpin(Main main) {
+    public Action_ConsoleCommand(Main main, ActionType type) {
+        super(main, type);
         this.main = main;
-        this.waitingManager = main.getWaitingManager();
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(ErrorsEnum.COMMAND_ONLY_PLAYER.getErrorString());
-            return false;
-        }
-        Player player = (Player) sender;
-        if (args[0].length() == 0) {
-            player.sendMessage("YOU FUCKING CUNT");
+    public void run(List<String> data, Integer line, Block block, Player player) {
+
+        this.splitted = data.get(line - 1).split(" ");
+
+        if (splitted.length < 2) {
+            Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "Error occured at line: " + (line + 1) + ", value is empty.");
         }
 
-        if (args[0].equals("add")) {
-            waitingManager.addWaiting(player, ClickType.ADD);
-        }
+        command = StringStitcherUtils.stitch(splitted, 1);
 
-        if (args[0].equals("edit")) {
-            waitingManager.addWaiting(player, ClickType.EDIT);
-        }
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+        runNext(data, line, block, player);
 
-        if (args[0].equals("clear")) {
-            waitingManager.removeWaiting(player);
-        }
-
-        return false;
     }
 
 }

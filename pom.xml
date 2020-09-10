@@ -55,8 +55,9 @@
 
     <repositories>
         <repository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
+            <id>github</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/Drison64/InventoryAPI</url>
         </repository>
     </repositories>
 
@@ -70,7 +71,7 @@
         <dependency>
             <groupId>me.Drison64</groupId>
             <artifactId>InventoryAPI</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.2</version>
         </dependency>
     </dependencies>
 </project>

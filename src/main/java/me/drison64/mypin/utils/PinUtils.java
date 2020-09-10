@@ -22,50 +22,30 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin;
+package me.drison64.mypin.utils;
 
-import me.drison64.mypin.managers.WaitingManager;
-import me.drison64.mypin.objects.ClickType;
-import me.drison64.mypin.objects.ErrorsEnum;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import me.drison64.mypin.Main;
+import me.drison64.mypin.managers.ConfigManager;
+import me.drison64.mypin.objects.ConfigType;
+import org.bukkit.Location;
+import org.bukkit.block.Block;
 
-public class cmdpin implements CommandExecutor {
+public class PinUtils {
 
     private Main main;
-    private WaitingManager waitingManager;
+    private ConfigManager configManager;
 
-    public cmdpin(Main main) {
+    public PinUtils(Main main) {
         this.main = main;
-        this.waitingManager = main.getWaitingManager();
+        this.configManager = main.getConfigManager();
     }
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(ErrorsEnum.COMMAND_ONLY_PLAYER.getErrorString());
+    public boolean isSet(Block block) {
+        if (block == null) {
             return false;
         }
-        Player player = (Player) sender;
-        if (args[0].length() == 0) {
-            player.sendMessage("YOU FUCKING CUNT");
-        }
-
-        if (args[0].equals("add")) {
-            waitingManager.addWaiting(player, ClickType.ADD);
-        }
-
-        if (args[0].equals("edit")) {
-            waitingManager.addWaiting(player, ClickType.EDIT);
-        }
-
-        if (args[0].equals("clear")) {
-            waitingManager.removeWaiting(player);
-        }
-
-        return false;
+        Location loc = block.getLocation();
+        return configManager.getConfig(ConfigType.DATA).get().isSet("data.blocks." + loc.getBlockX() + loc.getBlockY() + loc.getBlockZ());
     }
 
 }
