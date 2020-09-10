@@ -22,24 +22,114 @@
  * SOFTWARE.
  */
 
-/*package me.drison64.mypin.Inventories;
+package me.drison64.mypin.inventories;
 
+import me.drison64.inventoryapi.CustomInventory;
+import me.drison64.inventoryapi.ItemStackUtils;
 import me.drison64.mypin.Main;
-import me.drison64.mypin.Managers.PinManager;
-import me.drison64.mypin.Objects.Pin;
-import me.drison64.mypin.Utils.ArrayUtils;
-import me.drison64.mypin.Utils.EncryptionUtils;
-import me.drison64.mypin.Utils.InventoryTitleUtils;
+import me.drison64.mypin.objects.Pin;
+import me.drison64.mypin.utils.ArrayUtils;
+import me.drison64.mypin.utils.EncryptionUtils;
+import me.drison64.mypin.utils.InventoryTitleUtils;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
-public class EnterInventory extends AbstractInventory {
+public class EnterInventory extends CustomInventory {
 
-    private final Main main;
+    private Main main;
+    private Block block;
+    private String code;
+
+    public EnterInventory(Main main, Block block, String code, String title) {
+        this.main = main;
+        this.block = block;
+        this.code = code;
+        this.title = title;
+    }
+
+    public EnterInventory(Main main, Block block, String code) {
+        this.main = main;
+        this.block = block;
+        this.code = code;
+        this.title = "Please enter a pin";
+    }
+
+    @Override
+    protected void init(HashMap<Integer, ItemStack> hashMap) {
+        size = 54;
+        originalTitle = "Please enter a pin";
+        set(12, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/caf1b280cab59f4469dab9f1a2af7927ed96a81df1e24d50a8e3984abfe4044", "1", Arrays.asList("")));
+        set(13, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/e4b1e1d426123ce40cd6a54b0f876ad30c08539cf5a6ea63e847dc507950ff", "2", Arrays.asList("")));
+        set(14, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/904ccf8b5332c196c9ea02b22b39b99facd1cc82bfe3f7d7aeedc3c3329039", "3", Arrays.asList("")));
+        set(21, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/6b4fc18e975f4f222d885216e363adc9e6d456aa29080e48eb47144dda436f7", "4", Arrays.asList("")));
+        set(22, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/1d8b22239712e0ad579a62ae4c115103e7728825e17508acd6cc89174ee838", "5", Arrays.asList("")));
+        set(23, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/9eefbad16712a05f98e4f0de5b4486af3987b46ea6ab4e3be93d14a832c56e", "6", Arrays.asList("")));
+        set(30, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/a3e69fa942df3d5ea53a3a97491617510924c6b8d7c4371197378a1cf2def27", "7", Arrays.asList("")));
+        set(31, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/7d184fd4ab51d4622f49b54ce7a1395c29f02ad35ce5abd5d3c25638f3a82", "8", Arrays.asList("")));
+        set(32, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/1b2454a5faa25f7c4f5771d52bb4f55deb1939f75efd8e0ac421812ba3dc7", "9", Arrays.asList("")));
+        set(40, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/ffa45911b16298cfca4b2291eeda666113bc6f2a37dcb2ecd8c2754d24ef6", "0", Arrays.asList("")));
+
+        if (title == originalTitle) {
+            set(41, ItemStackUtils.mkitem(1, Material.GRAY_STAINED_GLASS_PANE, "", Arrays.asList("")));
+            set(39, ItemStackUtils.mkitem(1, Material.GRAY_STAINED_GLASS_PANE, "", Arrays.asList("")));
+        } else {
+            set(41, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/a92e31ffb59c90ab08fc9dc1fe26802035a3a47c42fee63423bcdb4262ecb9b6", "Confirm", Arrays.asList("")));
+            set(39, ItemStackUtils.mkskull(1, "http://textures.minecraft.net/texture/edf5c2f893bd3f89ca40703ded3e42dd0fbdba6f6768c8789afdff1fa78bf6", "Back", Arrays.asList("")));
+        }
+
+        fill(ItemStackUtils.mkitem(1, Material.GRAY_STAINED_GLASS_PANE, "", Arrays.asList("")), 54);
+    }
+
+    @Override
+    protected void fire(Event event) {
+        if (event instanceof InventoryClickEvent) {
+            InventoryClickEvent e = (InventoryClickEvent) event;
+            int slot = e.getRawSlot();
+            e.setCancelled(true);
+            if (ArrayUtils.contains(new Object[]{12, 13, 14, 21, 22, 23, 30, 31, 32, 40}, slot)) {
+
+                code = code + slot;
+
+                main.getInventoryManager().open(new EnterInventory(main, block, code, InventoryTitleUtils.addCode(e, originalTitle)), (Player) e.getWhoClicked());
+
+            }
+            if (slot == 39) {
+
+                code = code.substring(0, code.length() - 2);
+
+                String removecode = InventoryTitleUtils.removeCode(e, originalTitle);
+                if (removecode == null) {
+                    main.getInventoryManager().open(new EnterInventory(main, block, code, originalTitle), (Player) e.getWhoClicked());
+                } else {
+                    main.getInventoryManager().open(new EnterInventory(main, block, code, removecode), (Player) e.getWhoClicked());
+                }
+                main.getInventoryManager().open(new EnterInventory(main, block, code, InventoryTitleUtils.removeCode(e, originalTitle)), (Player) e.getWhoClicked());
+            } else if (slot == 41) {
+
+                Pin pin = main.getPinManager().getNew(block);
+
+                String hashed = EncryptionUtils.toSHA256(code, block.getLocation());
+
+                if (pin.getPin().equals(hashed)) {
+
+                    main.getActionsManager().fire(pin.getCommands(), 1, block, (Player) e.getWhoClicked());
+
+                    main.getInventoryManager().close(((Player) e.getWhoClicked()));
+
+                }
+
+            }
+        }
+    }
+
+    /*private final Main main;
     private PinManager pinManager;
     private final String originalTitle = "Please enter a pin";
 
@@ -118,6 +208,6 @@ public class EnterInventory extends AbstractInventory {
     @Override
     protected void close(Player player) {
 
-    }
+    }*/
 
-}*/
+}

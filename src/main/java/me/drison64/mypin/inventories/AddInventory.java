@@ -22,14 +22,14 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.Inventories;
+package me.drison64.mypin.inventories;
 
 import me.drison64.inventoryapi.CustomInventory;
 import me.drison64.inventoryapi.ItemStackUtils;
 import me.drison64.mypin.Main;
-import me.drison64.mypin.Objects.Pin;
-import me.drison64.mypin.Utils.ArrayUtils;
-import me.drison64.mypin.Utils.InventoryTitleUtils;
+import me.drison64.mypin.objects.Pin;
+import me.drison64.mypin.utils.ArrayUtils;
+import me.drison64.mypin.utils.InventoryTitleUtils;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -122,7 +122,7 @@ public class AddInventory extends CustomInventory {
                 pin.setDisabled(false);
                 pin.toStorage(block);
 
-                e.getWhoClicked().closeInventory();
+                main.getInventoryManager().close((Player) e.getWhoClicked());
 
             }
         }
