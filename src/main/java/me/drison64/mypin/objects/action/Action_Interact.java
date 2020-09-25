@@ -70,7 +70,22 @@ public class Action_Interact extends Action {
 
         if (InteractEnum.BUTTON.getMaterialList().contains(block.getType())) {
 
-            //TODO Button
+            Button button = (Button) block.getBlockData();
+
+            button.setPowered(true);
+            block.setBlockData(button);
+            block.getState().update();
+
+            Bukkit.getScheduler().runTaskLater(main, new Runnable() {
+                @Override
+                public void run() {
+                    button.setPowered(false);
+                    block.setBlockData(button);
+                    block.getState().update();
+                    runNext(data, line, block, player);
+                }
+            }, (long) (delay * 20));
+        
 
         }
 
