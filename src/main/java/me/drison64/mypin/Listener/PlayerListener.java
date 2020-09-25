@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.Listener;
+package me.drison64.mypin.listener;
 
 import me.drison64.mypin.Inventories.AddInventory;
 import me.drison64.mypin.Inventories.EditInventory;

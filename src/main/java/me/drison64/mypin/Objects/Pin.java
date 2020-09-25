@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.Objects;
+package me.drison64.mypin.objects;
 
 import me.drison64.mypin.Configurations.Configuration;
 import me.drison64.mypin.Main;

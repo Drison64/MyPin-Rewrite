@@ -32,7 +32,6 @@ import me.drison64.mypin.Inventories.EnterInventory;
 public enum ClickType {
 
     ADD(AddInventory.class),
-    ENTER(EnterInventory.class),
     EDIT(EditInventory.class);
 
     private Class<? extends AbstractInventory> clazz;
