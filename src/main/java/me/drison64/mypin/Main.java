@@ -85,8 +85,7 @@ public class Main extends JavaPlugin {
         configManager.registerConfig(new Data(this));
 
 
-
-        getCommand("cunt").setExecutor(new cmdcunt(this));
+        
         getCommand("pin").setExecutor(new cmdpin(this));
 
     }
