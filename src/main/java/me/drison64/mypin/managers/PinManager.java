@@ -22,43 +22,26 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.objects.action;
+package me.drison64.mypin.managers;
 
 import me.drison64.mypin.Main;
-import me.drison64.mypin.Utils.StringStitcherUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import me.drison64.mypin.Objects.Pin;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 
-import java.util.List;
-
-public class Action_ConsoleCommand extends Action {
+public class PinManager {
 
     private Main main;
-    private String[] splitted;
-    private String command;
-    private int delay = 1;
-
-    public Action_ConsoleCommand(Main main, ActionType type) {
-        super(main, type);
+    
+    public PinManager(Main main) {
         this.main = main;
     }
 
-    @Override
-    public void run(List<String> data, Integer line, Block block, Player player) {
+    public Pin getNew() {
+        return new Pin(main);
+    }
 
-        this.splitted = data.get(line - 1).split(" ");
-
-        if (splitted.length < 2) {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "Error occured at line: " + (line + 1) + ", value is empty.");
-        }
-
-        command = StringStitcherUtils.stitch(splitted, 1);
-
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
-        runNext(data, line, block, player);
-
+    public Pin getNew(Block block) {
+        return new Pin(block, main);
     }
 
 }
