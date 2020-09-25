@@ -30,9 +30,8 @@ import me.drison64.mypin.Listener.InventoryListener;
 import me.drison64.mypin.Listener.PlayerListener;
 import me.drison64.mypin.Managers.*;
 import me.drison64.mypin.Objects.Action.*;
-import me.drison64.mypin.Utils.DefaultActionsUtils;
-import me.drison64.mypin.Utils.DoorUtils;
 import me.drison64.mypin.Utils.PinUtils;
+
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -46,17 +45,11 @@ public class Main extends JavaPlugin {
     private PinManager pinManager;
     private ActionsManager actionsManager;
     private PinUtils pinUtils;
-    private DefaultActionsUtils defaultActionsUtils;
-    private DoorUtils doorUtils;
 
     @Override
     public void onEnable() {
 
         actionsManager = new ActionsManager(this);
-
-        defaultActionsUtils = new DefaultActionsUtils(this);
-
-        doorUtils = new DoorUtils(this);
 
         inventoryManager = new InventoryManager();
         //inventoryManager.registerInventory(new EditInventory(this));
@@ -85,7 +78,7 @@ public class Main extends JavaPlugin {
         configManager.registerConfig(new Data(this));
 
 
-        
+
         getCommand("pin").setExecutor(new cmdpin(this));
 
     }
@@ -106,19 +99,12 @@ public class Main extends JavaPlugin {
         return pinManager;
     }
 
+    public ActionsManager getActionsManager() {
+        return actionsManager;
+    }
+
     public PinUtils getPinUtils() {
         return pinUtils;
     }
 
-    public DefaultActionsUtils getDefaultActionsUtils() {
-        return defaultActionsUtils;
-    }
-
-    public DoorUtils getDoorUtils() {
-        return doorUtils;
-    }
-
-    public ActionsManager getActionsManager() {
-        return actionsManager;
-    }
 }

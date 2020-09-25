@@ -33,13 +33,9 @@ import java.util.List;
 
 public class DefaultActionsUtils {
 
-    private Main main;
-    private List<Material> action_action;
+    public static List<String> getDefaultActions(Block block) {
 
-    public DefaultActionsUtils(Main main) {
-        this.main = main;
-        this.action_action = Arrays.asList(
-                Material.IRON_DOOR,
+        List<Material> action_interact = Arrays.asList(Material.IRON_DOOR,
                 Material.OAK_DOOR,
                 Material.SPRUCE_DOOR,
                 Material.BIRCH_DOOR,
@@ -65,14 +61,13 @@ public class DefaultActionsUtils {
 
                 Material.CHEST,
                 Material.TRAPPED_CHEST);
-    }
 
-    public List<String> getDefaultActions(Block block) {
-        for (Material material : action_action) {
+        for (Material material : action_interact) {
             if (block.getType() == material) {
                 return Arrays.asList("interact");
             }
         }
+
         return Arrays.asList("");
     }
 

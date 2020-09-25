@@ -31,13 +31,7 @@ import org.bukkit.block.data.type.Door;
 
 public class DoorUtils {
 
-    private Main main;
-
-    public DoorUtils(Main main) {
-        this.main = main;
-    }
-
-    public Block getOtherHalfBlock(Block block) {
+    public static Block getOtherHalfBlock(Block block) {
 
         Door door;
 
@@ -57,7 +51,7 @@ public class DoorUtils {
 
     }
 
-    public Boolean isDoor(Block block) {
+    public static Boolean isDoor(Block block) {
 
         try {
             Door door = (Door) block.getBlockData();
