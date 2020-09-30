@@ -22,28 +22,43 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.objects.Action;
+package me.drison64.mypin.objects.action;
 
-public enum ActionType {
+import me.drison64.mypin.Main;
+import me.drison64.mypin.utils.StringStitcherUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 
-    INTERACT("interact", Action_Interact.class),
-    WAIT("wait", Action_Wait.class),
-    CONSOLE_COMMAND("console_command", Action_ConsoleCommand.class),
-    PLAYER_COMMAND("player_command", Action_PlayerCommand.class);
+import java.util.List;
 
-    private String fancyname;
-    private Class<? extends Action> clazz;
+public class Action_PlayerCommand extends Action {
 
-    public String getFancyname() {
-        return fancyname;
+    private Main main;
+    private String[] splitted;
+    private String command;
+    private int delay = 1;
+
+    public Action_PlayerCommand(Main main, ActionType type) {
+        super(main, type);
+        this.main = main;
     }
 
-    public Class<? extends Action> getClazz() {
-        return clazz;
+    @Override
+    public void run(List<String> data, Integer line, Block block, Player player) {
+
+        this.splitted = data.get(line - 1).split(" ");
+
+        if (splitted.length < 2) {
+            Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "Error occured at line: " + (line + 1) + ", value is empty.");
+        }
+
+        command = StringStitcherUtils.stitch(splitted, 1);
+
+        player.performCommand(command);
+        runNext(data, line, block, player);
+
     }
 
-    ActionType(String fancyname, Class<? extends Action> clazz) {
-        this.fancyname = fancyname;
-        this.clazz = clazz;
-    }
 }

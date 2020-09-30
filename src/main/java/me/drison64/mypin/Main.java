@@ -33,7 +33,7 @@ import me.drison64.mypin.managers.ActionsManager;
 import me.drison64.mypin.managers.ConfigManager;
 import me.drison64.mypin.managers.PinManager;
 import me.drison64.mypin.managers.WaitingManager;
-import me.drison64.mypin.objects.Action.*;
+import me.drison64.mypin.objects.action.*;
 import me.drison64.mypin.utils.DefaultActionsUtils;
 import me.drison64.mypin.utils.DoorUtils;
 import me.drison64.mypin.utils.PinUtils;

@@ -22,42 +22,37 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.objects.Action;
+package me.drison64.mypin.objects.action;
 
 import me.drison64.mypin.Main;
-import me.drison64.mypin.utils.StringStitcherUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public class Action_PlayerCommand extends Action {
+public abstract class Action {
 
     private Main main;
-    private String[] splitted;
-    private String command;
-    private int delay = 1;
+    private ActionType type;
 
-    public Action_PlayerCommand(Main main, ActionType type) {
-        super(main, type);
+    public Action(Main main, ActionType type) {
         this.main = main;
+        this.type = type;
     }
 
-    @Override
-    public void run(List<String> data, Integer line, Block block, Player player) {
+    public abstract void run(List<String> input, Integer line, Block block, Player player);
 
-        this.splitted = data.get(line - 1).split(" ");
+    public ActionType getType() {
+        return type;
+    }
 
-        if (splitted.length < 2) {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "Error occured at line: " + (line + 1) + ", value is empty.");
+    protected void runNext(List<String> input, Integer line, Block block, Player player) {
+
+        if (input.size() < line + 1) {
+            return;
         }
 
-        command = StringStitcherUtils.stitch(splitted, 1);
-
-        player.performCommand(command);
-        runNext(data, line, block, player);
+        main.getActionsManager().get(type).run(input, line + 1 , block, player);
 
     }
 
