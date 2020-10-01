@@ -29,9 +29,8 @@ import me.drison64.mypin.configurations.Data;
 import me.drison64.mypin.listener.InventoryListener;
 import me.drison64.mypin.listener.PlayerListener;
 import me.drison64.mypin.managers.*;
-import me.drison64.mypin.objects.Action.*;
+import me.drison64.mypin.objects.action.*;
 import me.drison64.mypin.utils.PinUtils;
-
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
