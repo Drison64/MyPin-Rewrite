@@ -28,6 +28,7 @@ import me.drison64.mypin.Main;
 import me.drison64.mypin.managers.PinManager;
 import me.drison64.mypin.objects.Pin;
 import me.drison64.mypin.utils.ArrayUtils;
+import me.drison64.mypin.utils.DefaultActionsUtils;
 import me.drison64.mypin.utils.InventoryTitleUtils;
 import me.drison64.mypin.utils.ItemUtils;
 import org.bukkit.Material;
@@ -109,7 +110,7 @@ public class AddInventory extends AbstractInventory {
                             .
                                     getWorld());
             pin.setOwner(e.getWhoClicked().getUniqueId());
-            pin.setCommands(main.getDefaultActionsUtils().getDefaultActions(block));
+            pin.setCommands(DefaultActionsUtils.getDefaultActions(block));
             pin.setDefaultpermissions("10000");
             pin.setDisabled(false);
             pin.toStorage(block);

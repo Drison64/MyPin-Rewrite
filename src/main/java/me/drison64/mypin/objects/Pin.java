@@ -24,9 +24,10 @@
 
 package me.drison64.mypin.objects;
 
-import me.drison64.mypin.configurations.Configuration;
 import me.drison64.mypin.Main;
+import me.drison64.mypin.configurations.Configuration;
 import me.drison64.mypin.managers.ConfigManager;
+import me.drison64.mypin.utils.DoorUtils;
 import me.drison64.mypin.utils.EncryptionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -130,9 +131,9 @@ public class Pin {
         if (main.getPinUtils().isSet(blockInput)) {
             block = blockInput;
         } else {
-            if (main.getDoorUtils().isDoor(blockInput)) {
-                if (main.getPinUtils().isSet(main.getDoorUtils().getOtherHalfBlock(blockInput))) {
-                    block = main.getDoorUtils().getOtherHalfBlock(blockInput);
+            if (DoorUtils.isDoor(blockInput)) {
+                if (main.getPinUtils().isSet(DoorUtils.getOtherHalfBlock(blockInput))) {
+                    block = DoorUtils.getOtherHalfBlock(blockInput);
                 }
             } else {
                 block = blockInput;

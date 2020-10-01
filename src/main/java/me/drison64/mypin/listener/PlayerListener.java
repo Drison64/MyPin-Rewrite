@@ -24,10 +24,10 @@
 
 package me.drison64.mypin.listener;
 
+import me.drison64.mypin.Main;
 import me.drison64.mypin.inventories.AddInventory;
 import me.drison64.mypin.inventories.EditInventory;
 import me.drison64.mypin.inventories.EnterInventory;
-import me.drison64.mypin.Main;
 import me.drison64.mypin.managers.InventoryManager;
 import me.drison64.mypin.managers.WaitingManager;
 import me.drison64.mypin.objects.ClickType;
@@ -50,7 +50,6 @@ public class PlayerListener implements Listener {
     private InventoryManager inventoryManager;
     private WaitingManager waitingManager;
     private PinUtils pinUtils;
-    private DoorUtils doorUtils;
 
     public PlayerListener(Main main) {
         this.main = main;
@@ -58,7 +57,6 @@ public class PlayerListener implements Listener {
         this.inventoryManager = main.getInventoryManager();
         this.waitingManager = main.getWaitingManager();
         this.pinUtils = main.getPinUtils();
-        this.doorUtils = main.getDoorUtils();
     }
 
     @EventHandler
@@ -82,9 +80,9 @@ public class PlayerListener implements Listener {
 
                 } else {
 
-                    if (doorUtils.isDoor(event.getClickedBlock())) {
+                    if (DoorUtils.isDoor(event.getClickedBlock())) {
 
-                        if (pinUtils.isSet(doorUtils.getOtherHalfBlock(event.getClickedBlock()))) {
+                        if (pinUtils.isSet(DoorUtils.getOtherHalfBlock(event.getClickedBlock()))) {
 
                             event.setCancelled(true);
 
