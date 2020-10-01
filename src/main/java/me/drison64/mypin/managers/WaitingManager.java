@@ -24,7 +24,7 @@
 
 package me.drison64.mypin.managers;
 
-import me.drison64.mypin.Objects.ClickType;
+import me.drison64.mypin.objects.ClickType;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;

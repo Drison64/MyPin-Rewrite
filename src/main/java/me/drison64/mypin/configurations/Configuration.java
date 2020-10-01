@@ -25,7 +25,7 @@
 package me.drison64.mypin.configurations;
 
 import me.drison64.mypin.Main;
-import me.drison64.mypin.Managers.ConfigManager;
+import me.drison64.mypin.managers.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

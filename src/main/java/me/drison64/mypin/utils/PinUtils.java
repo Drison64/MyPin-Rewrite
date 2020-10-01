@@ -25,8 +25,8 @@
 package me.drison64.mypin.utils;
 
 import me.drison64.mypin.Main;
-import me.drison64.mypin.Managers.ConfigManager;
-import me.drison64.mypin.Objects.ConfigType;
+import me.drison64.mypin.managers.ConfigManager;
+import me.drison64.mypin.objects.ConfigType;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 
