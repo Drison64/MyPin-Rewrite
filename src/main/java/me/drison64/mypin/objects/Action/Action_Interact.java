@@ -30,6 +30,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.data.Openable;
+import org.bukkit.block.data.Powerable;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -70,7 +71,20 @@ public class Action_Interact extends Action {
 
         if (InteractEnum.BUTTON.getMaterialList().contains(block.getType())) {
 
-            //TODO Button
+            Powerable powerable = (Powerable) block.getBlockData();
+            powerable.setPowered(true);
+            block.setBlockData(powerable);
+            block.getState().update();
+
+            Bukkit.getScheduler().runTaskLater(main, new Runnable() {
+                @Override
+                public void run() {
+                    powerable.setPowered(false);
+                    block.setBlockData(powerable);
+                    block.getState().update();
+                    runNext(data, line, block, player);
+                }
+            }, (long) (delay * 20));
 
         }
 
