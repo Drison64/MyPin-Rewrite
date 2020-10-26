@@ -93,9 +93,14 @@ public class EnterInventory extends CustomInventory {
             InventoryClickEvent e = (InventoryClickEvent) event;
             int slot = e.getRawSlot();
             e.setCancelled(true);
+
+            System.out.println("1");
+
             if (ArrayUtils.contains(new Object[]{12, 13, 14, 21, 22, 23, 30, 31, 32, 40}, slot)) {
 
                 code = code + slot;
+
+                System.out.println("2");
 
                 main.getInventoryManager().open(new EnterInventory(main, block, code, InventoryTitleUtils.addCode(e, originalTitle)), (Player) e.getWhoClicked());
 
