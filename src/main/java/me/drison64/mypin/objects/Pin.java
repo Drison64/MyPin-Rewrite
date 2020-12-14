@@ -24,11 +24,18 @@
 
 package me.drison64.mypin.objects;
 
+<<<<<<< HEAD
 import me.drison64.mypin.Main;
 import me.drison64.mypin.configurations.Configuration;
 import me.drison64.mypin.managers.ConfigManager;
 import me.drison64.mypin.utils.DoorUtils;
 import me.drison64.mypin.utils.EncryptionUtils;
+=======
+import me.drison64.mypin.Configurations.Configuration;
+import me.drison64.mypin.Main;
+import me.drison64.mypin.Managers.ConfigManager;
+import me.drison64.mypin.Utils.EncryptionUtils;
+>>>>>>> parent of 54517c6... fixed my biggest fuck up
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;

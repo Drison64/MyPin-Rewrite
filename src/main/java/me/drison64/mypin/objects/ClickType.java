@@ -22,12 +22,12 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.objects;
+package me.drison64.mypin.Objects;
 
-import me.drison64.mypin.inventories.AbstractInventory;
-import me.drison64.mypin.inventories.AddInventory;
-import me.drison64.mypin.inventories.EditInventory;
-import me.drison64.mypin.inventories.EnterInventory;
+import me.drison64.mypin.Inventories.AbstractInventory;
+import me.drison64.mypin.Inventories.AddInventory;
+import me.drison64.mypin.Inventories.EditInventory;
+import me.drison64.mypin.Inventories.EnterInventory;
 
 public enum ClickType {
 

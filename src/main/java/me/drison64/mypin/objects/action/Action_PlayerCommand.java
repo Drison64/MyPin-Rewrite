@@ -25,7 +25,7 @@
 package me.drison64.mypin.objects.action;
 
 import me.drison64.mypin.Main;
-import me.drison64.mypin.utils.StringStitcherUtils;
+import me.drison64.mypin.Utils.StringStitcherUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;

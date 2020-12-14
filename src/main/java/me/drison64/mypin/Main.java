@@ -24,6 +24,7 @@
 
 package me.drison64.mypin;
 
+<<<<<<< HEAD
 import me.drison64.mypin.configurations.Config;
 import me.drison64.mypin.configurations.Data;
 import me.drison64.mypin.listener.InventoryListener;
@@ -31,6 +32,16 @@ import me.drison64.mypin.listener.PlayerListener;
 import me.drison64.mypin.managers.*;
 import me.drison64.mypin.objects.action.*;
 import me.drison64.mypin.utils.PinUtils;
+=======
+import me.drison64.mypin.Configurations.Config;
+import me.drison64.mypin.Configurations.Data;
+import me.drison64.mypin.Listener.InventoryListener;
+import me.drison64.mypin.Listener.PlayerListener;
+import me.drison64.mypin.Managers.*;
+import me.drison64.mypin.Objects.Action.*;
+import me.drison64.mypin.Utils.PinUtils;
+
+>>>>>>> parent of 54517c6... fixed my biggest fuck up
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;

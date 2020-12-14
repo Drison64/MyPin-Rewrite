@@ -25,9 +25,9 @@
 package me.drison64.mypin.inventories;
 
 import me.drison64.mypin.Main;
-import me.drison64.mypin.objects.ConfigType;
-import me.drison64.mypin.objects.EditInventoryType;
-import me.drison64.mypin.utils.ItemUtils;
+import me.drison64.mypin.Objects.ConfigType;
+import me.drison64.mypin.Objects.EditInventoryType;
+import me.drison64.mypin.Utils.ItemUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

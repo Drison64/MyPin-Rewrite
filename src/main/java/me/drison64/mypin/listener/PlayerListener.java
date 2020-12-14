@@ -24,6 +24,7 @@
 
 package me.drison64.mypin.listener;
 
+<<<<<<< HEAD
 import me.drison64.mypin.Main;
 import me.drison64.mypin.inventories.AddInventory;
 import me.drison64.mypin.inventories.EditInventory;
@@ -34,6 +35,18 @@ import me.drison64.mypin.objects.ClickType;
 import me.drison64.mypin.objects.EditInventoryType;
 import me.drison64.mypin.utils.DoorUtils;
 import me.drison64.mypin.utils.PinUtils;
+=======
+import me.drison64.mypin.Inventories.AddInventory;
+import me.drison64.mypin.Inventories.EditInventory;
+import me.drison64.mypin.Inventories.EnterInventory;
+import me.drison64.mypin.Main;
+import me.drison64.mypin.Managers.InventoryManager;
+import me.drison64.mypin.Managers.WaitingManager;
+import me.drison64.mypin.Objects.ClickType;
+import me.drison64.mypin.Objects.EditInventoryType;
+import me.drison64.mypin.Utils.DoorUtils;
+import me.drison64.mypin.Utils.PinUtils;
+>>>>>>> parent of 54517c6... fixed my biggest fuck up
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

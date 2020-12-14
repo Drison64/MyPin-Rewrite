@@ -24,9 +24,9 @@
 
 package me.drison64.mypin.objects;
 
-import me.drison64.mypin.configurations.Config;
-import me.drison64.mypin.configurations.Configuration;
-import me.drison64.mypin.configurations.Data;
+import me.drison64.mypin.Configurations.Config;
+import me.drison64.mypin.Configurations.Configuration;
+import me.drison64.mypin.Configurations.Data;
 
 public enum ConfigType {
 
