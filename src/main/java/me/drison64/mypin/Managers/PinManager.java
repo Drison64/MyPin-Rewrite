@@ -31,11 +31,9 @@ import org.bukkit.block.Block;
 public class PinManager {
 
     private Main main;
-    private ConfigManager configManager;
-
+    
     public PinManager(Main main) {
         this.main = main;
-        this.configManager = main.getConfigManager();
     }
 
     public Pin getNew() {

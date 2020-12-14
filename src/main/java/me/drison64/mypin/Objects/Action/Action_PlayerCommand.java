@@ -35,14 +35,11 @@ import java.util.List;
 
 public class Action_PlayerCommand extends Action {
 
-    private Main main;
     private String[] splitted;
     private String command;
-    private int delay = 1;
 
     public Action_PlayerCommand(Main main, ActionType type) {
         super(main, type);
-        this.main = main;
     }
 
     @Override

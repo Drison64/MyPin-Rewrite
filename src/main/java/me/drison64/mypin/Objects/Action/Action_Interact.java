@@ -70,8 +70,6 @@ public class Action_Interact extends Action {
 
         if (InteractEnum.BUTTON.getMaterialList().contains(block.getType())) {
 
-            //TODO Button
-
         }
 
         if (InteractEnum.CHEST.getMaterialList().contains(block.getType())) {
