@@ -22,11 +22,11 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.Managers;
+package me.drison64.mypin.managers;
 
 import me.drison64.mypin.Main;
-import me.drison64.mypin.Objects.Action.Action;
-import me.drison64.mypin.Objects.Action.ActionType;
+import me.drison64.mypin.objects.Action.Action;
+import me.drison64.mypin.objects.Action.ActionType;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 

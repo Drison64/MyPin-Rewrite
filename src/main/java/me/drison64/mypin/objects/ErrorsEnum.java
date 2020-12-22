@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.Objects;
+package me.drison64.mypin.objects;
 
 public enum ErrorsEnum {
 

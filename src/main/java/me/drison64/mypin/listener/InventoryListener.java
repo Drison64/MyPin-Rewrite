@@ -22,10 +22,10 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.Listener;
+package me.drison64.mypin.listener;
 
 import me.drison64.mypin.Main;
-import me.drison64.mypin.Managers.InventoryManager;
+import me.drison64.mypin.managers.InventoryManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

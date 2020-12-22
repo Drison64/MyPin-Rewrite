@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.Utils;
+package me.drison64.mypin.utils;
 
 public class ArrayUtils {
 

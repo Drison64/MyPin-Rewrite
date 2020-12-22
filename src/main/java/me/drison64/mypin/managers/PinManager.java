@@ -22,10 +22,10 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.Managers;
+package me.drison64.mypin.managers;
 
 import me.drison64.mypin.Main;
-import me.drison64.mypin.Objects.Pin;
+import me.drison64.mypin.objects.Pin;
 import org.bukkit.block.Block;
 
 public class PinManager {

@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.Objects.Action;
+package me.drison64.mypin.objects.Action;
 
 import me.drison64.mypin.Main;
 import org.bukkit.block.Block;
