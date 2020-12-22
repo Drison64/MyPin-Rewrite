@@ -22,18 +22,20 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.managers;
+package me.drison64.mypin.Managers;
 
 import me.drison64.mypin.Main;
-import me.drison64.mypin.objects.Pin;
+import me.drison64.mypin.Objects.Pin;
 import org.bukkit.block.Block;
 
 public class PinManager {
 
     private Main main;
-    
+    private ConfigManager configManager;
+
     public PinManager(Main main) {
         this.main = main;
+        this.configManager = main.getConfigManager();
     }
 
     public Pin getNew() {

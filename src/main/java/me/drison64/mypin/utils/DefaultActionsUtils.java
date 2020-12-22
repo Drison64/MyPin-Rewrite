@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.utils;
+package me.drison64.mypin.Utils;
 
 import me.drison64.mypin.Main;
 import org.bukkit.Material;
@@ -33,9 +33,13 @@ import java.util.List;
 
 public class DefaultActionsUtils {
 
-    public static List<String> getDefaultActions(Block block) {
+    private Main main;
+    private List<Material> action_action;
 
-        List<Material> action_interact = Arrays.asList(Material.IRON_DOOR,
+    public DefaultActionsUtils(Main main) {
+        this.main = main;
+        this.action_action = Arrays.asList(
+                Material.IRON_DOOR,
                 Material.OAK_DOOR,
                 Material.SPRUCE_DOOR,
                 Material.BIRCH_DOOR,
@@ -61,13 +65,14 @@ public class DefaultActionsUtils {
 
                 Material.CHEST,
                 Material.TRAPPED_CHEST);
+    }
 
-        for (Material material : action_interact) {
+    public List<String> getDefaultActions(Block block) {
+        for (Material material : action_action) {
             if (block.getType() == material) {
                 return Arrays.asList("interact");
             }
         }
-
         return Arrays.asList("");
     }
 

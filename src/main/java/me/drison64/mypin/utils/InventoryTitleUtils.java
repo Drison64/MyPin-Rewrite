@@ -22,12 +22,19 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.utils;
+package me.drison64.mypin.Utils;
 
+import me.drison64.mypin.Main;
 import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 public class InventoryTitleUtils {
+
+    private Main main;
+
+    public InventoryTitleUtils(Main main) {
+        this.main = main;
+    }
 
     public static String addCode(InventoryClickEvent e, String originalTitle) {
         int slot = e.getRawSlot();

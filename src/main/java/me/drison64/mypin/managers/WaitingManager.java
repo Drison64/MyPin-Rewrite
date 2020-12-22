@@ -22,9 +22,9 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.managers;
+package me.drison64.mypin.Managers;
 
-import me.drison64.mypin.objects.ClickType;
+import me.drison64.mypin.Objects.ClickType;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;

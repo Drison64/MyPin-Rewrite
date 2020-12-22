@@ -22,29 +22,14 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.inventories;
+package me.drison64.mypin.Inventories;
 
 import me.drison64.mypin.Main;
-<<<<<<< HEAD:src/main/java/me/drison64/mypin/Inventories/AddInventory.java
-=======
-<<<<<<< HEAD
->>>>>>> 3a514b3b6fa9952c2cbbbb17ae62e648ef3b63d7:src/main/java/me/drison64/mypin/inventories/AddInventory.java
-import me.drison64.mypin.managers.PinManager;
-import me.drison64.mypin.objects.Pin;
-import me.drison64.mypin.utils.ArrayUtils;
-import me.drison64.mypin.utils.DefaultActionsUtils;
-import me.drison64.mypin.utils.InventoryTitleUtils;
-import me.drison64.mypin.utils.ItemUtils;
-<<<<<<< HEAD:src/main/java/me/drison64/mypin/Inventories/AddInventory.java
-=======
-=======
 import me.drison64.mypin.Managers.PinManager;
 import me.drison64.mypin.Objects.Pin;
 import me.drison64.mypin.Utils.ArrayUtils;
 import me.drison64.mypin.Utils.InventoryTitleUtils;
 import me.drison64.mypin.Utils.ItemUtils;
->>>>>>> parent of 54517c6... fixed my biggest fuck up
->>>>>>> 3a514b3b6fa9952c2cbbbb17ae62e648ef3b63d7:src/main/java/me/drison64/mypin/inventories/AddInventory.java
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -124,7 +109,7 @@ public class AddInventory extends AbstractInventory {
                             .
                                     getWorld());
             pin.setOwner(e.getWhoClicked().getUniqueId());
-            pin.setCommands(DefaultActionsUtils.getDefaultActions(block));
+            pin.setCommands(main.getDefaultActionsUtils().getDefaultActions(block));
             pin.setDefaultpermissions("10000");
             pin.setDisabled(false);
             pin.toStorage(block);

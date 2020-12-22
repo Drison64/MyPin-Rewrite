@@ -22,43 +22,33 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.Objects.Action;
+package me.drison64.mypin;
 
-import me.drison64.mypin.Main;
-import me.drison64.mypin.Utils.StringStitcherUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
+import me.drison64.mypin.Managers.InventoryManager;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 
-import java.util.List;
+public class cmdcunt implements CommandExecutor {
 
-public class Action_ConsoleCommand extends Action {
+    Main main;
 
-    private Main main;
-    private String[] splitted;
-    private String command;
-    private int delay = 1;
+    InventoryManager inventoryManager;
 
-    public Action_ConsoleCommand(Main main, ActionType type) {
-        super(main, type);
+    public cmdcunt(Main main) {
         this.main = main;
+
+        inventoryManager = main.getInventoryManager();
     }
 
     @Override
-    public void run(List<String> data, Integer line, Block block, Player player) {
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
-        this.splitted = data.get(line - 1).split(" ");
+        //inventoryManager.getInventory(ClickType.ADD).open((Player) commandSender, null);
 
-        if (splitted.length < 2) {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "Error occured at line: " + (line + 1) + ", value is empty.");
-        }
 
-        command = StringStitcherUtils.stitch(splitted, 1);
 
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
-        runNext(data, line, block, player);
-
+        return false;
     }
 
 }

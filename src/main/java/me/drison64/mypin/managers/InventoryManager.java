@@ -22,9 +22,9 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.managers;
+package me.drison64.mypin.Managers;
 
-import me.drison64.mypin.inventories.AbstractInventory;
+import me.drison64.mypin.Inventories.AbstractInventory;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 

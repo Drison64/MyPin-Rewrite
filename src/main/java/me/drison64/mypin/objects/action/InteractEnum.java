@@ -22,11 +22,7 @@
  * SOFTWARE.
  */
 
-<<<<<<< HEAD:src/main/java/me/drison64/mypin/Objects/Action/InteractEnum.java
-package me.drison64.mypin.objects.action;
-=======
-package me.drison64.mypin.bjects.action;
->>>>>>> 3a514b3b6fa9952c2cbbbb17ae62e648ef3b63d7:src/main/java/me/drison64/mypin/objects/action/InteractEnum.java
+package me.drison64.mypin.Objects.Action;
 
 import org.bukkit.Material;
 

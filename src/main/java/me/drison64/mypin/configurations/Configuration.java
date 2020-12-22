@@ -22,10 +22,10 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.configurations;
+package me.drison64.mypin.Configurations;
 
 import me.drison64.mypin.Main;
-import me.drison64.mypin.managers.ConfigManager;
+import me.drison64.mypin.Managers.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

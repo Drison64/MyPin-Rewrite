@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.objects;
+package me.drison64.mypin.Objects;
 
 public enum EditInventoryType {
 

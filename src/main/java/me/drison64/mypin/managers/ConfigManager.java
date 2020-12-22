@@ -22,11 +22,11 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.managers;
+package me.drison64.mypin.Managers;
 
-import me.drison64.mypin.configurations.Configuration;
+import me.drison64.mypin.Configurations.Configuration;
 import me.drison64.mypin.Main;
-import me.drison64.mypin.objects.ConfigType;
+import me.drison64.mypin.Objects.ConfigType;
 
 import java.util.ArrayList;
 import java.util.List;

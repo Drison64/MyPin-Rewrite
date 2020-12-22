@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.objects.action;
+package me.drison64.mypin.Objects.Action;
 
 import me.drison64.mypin.Main;
 import org.bukkit.Bukkit;
@@ -69,6 +69,8 @@ public class Action_Interact extends Action {
         }
 
         if (InteractEnum.BUTTON.getMaterialList().contains(block.getType())) {
+
+            //TODO Button
 
         }
 

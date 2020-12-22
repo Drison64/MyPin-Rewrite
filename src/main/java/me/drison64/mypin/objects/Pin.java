@@ -22,28 +22,12 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.objects;
+package me.drison64.mypin.Objects;
 
-<<<<<<< HEAD:src/main/java/me/drison64/mypin/Objects/Pin.java
-import me.drison64.mypin.Main;
-import me.drison64.mypin.configurations.Configuration;
-import me.drison64.mypin.managers.ConfigManager;
-import me.drison64.mypin.utils.DoorUtils;
-import me.drison64.mypin.utils.EncryptionUtils;
-=======
-<<<<<<< HEAD
-import me.drison64.mypin.Main;
-import me.drison64.mypin.configurations.Configuration;
-import me.drison64.mypin.managers.ConfigManager;
-import me.drison64.mypin.utils.DoorUtils;
-import me.drison64.mypin.utils.EncryptionUtils;
-=======
 import me.drison64.mypin.Configurations.Configuration;
 import me.drison64.mypin.Main;
 import me.drison64.mypin.Managers.ConfigManager;
 import me.drison64.mypin.Utils.EncryptionUtils;
->>>>>>> parent of 54517c6... fixed my biggest fuck up
->>>>>>> 3a514b3b6fa9952c2cbbbb17ae62e648ef3b63d7:src/main/java/me/drison64/mypin/objects/Pin.java
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -146,9 +130,9 @@ public class Pin {
         if (main.getPinUtils().isSet(blockInput)) {
             block = blockInput;
         } else {
-            if (DoorUtils.isDoor(blockInput)) {
-                if (main.getPinUtils().isSet(DoorUtils.getOtherHalfBlock(blockInput))) {
-                    block = DoorUtils.getOtherHalfBlock(blockInput);
+            if (main.getDoorUtils().isDoor(blockInput)) {
+                if (main.getPinUtils().isSet(main.getDoorUtils().getOtherHalfBlock(blockInput))) {
+                    block = main.getDoorUtils().getOtherHalfBlock(blockInput);
                 }
             } else {
                 block = blockInput;

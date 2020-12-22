@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.utils;
+package me.drison64.mypin.Utils;
 
 import me.drison64.mypin.Main;
 import org.bukkit.Bukkit;
@@ -31,7 +31,13 @@ import org.bukkit.block.data.type.Door;
 
 public class DoorUtils {
 
-    public static Block getOtherHalfBlock(Block block) {
+    private Main main;
+
+    public DoorUtils(Main main) {
+        this.main = main;
+    }
+
+    public Block getOtherHalfBlock(Block block) {
 
         Door door;
 
@@ -51,7 +57,7 @@ public class DoorUtils {
 
     }
 
-    public static Boolean isDoor(Block block) {
+    public Boolean isDoor(Block block) {
 
         try {
             Door door = (Door) block.getBlockData();
