@@ -24,9 +24,9 @@
 
 package me.drison64.mypin;
 
-import me.drison64.mypin.Managers.WaitingManager;
-import me.drison64.mypin.Objects.ClickType;
-import me.drison64.mypin.Objects.ErrorsEnum;
+import me.drison64.mypin.managers.WaitingManager;
+import me.drison64.mypin.objects.ClickType;
+import me.drison64.mypin.objects.ErrorsEnum;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

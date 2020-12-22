@@ -22,10 +22,10 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.Objects.Action;
+package me.drison64.mypin.objects.action;
 
 import me.drison64.mypin.Main;
-import me.drison64.mypin.Utils.StringStitcherUtils;
+import me.drison64.mypin.utils.StringStitcherUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
@@ -35,14 +35,11 @@ import java.util.List;
 
 public class Action_PlayerCommand extends Action {
 
-    private Main main;
     private String[] splitted;
     private String command;
-    private int delay = 1;
 
     public Action_PlayerCommand(Main main, ActionType type) {
         super(main, type);
-        this.main = main;
     }
 
     @Override

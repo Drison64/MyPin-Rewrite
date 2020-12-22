@@ -22,22 +22,14 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.Utils;
+package me.drison64.mypin.utils;
 
-import me.drison64.mypin.Main;
 import org.bukkit.Location;
-
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class EncryptionUtils {
-
-    private Main main;
-
-    public EncryptionUtils(Main main) {
-        this.main = main;
-    }
 
     public static String toSHA256(String input) {
         String hash;

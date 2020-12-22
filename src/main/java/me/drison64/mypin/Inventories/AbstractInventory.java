@@ -22,9 +22,10 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.Inventories;
+package me.drison64.mypin.inventories;
 
 import me.drison64.mypin.Main;
+import me.drison64.mypin.utils.DoorUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -74,9 +75,9 @@ public abstract class AbstractInventory {
         if (main.getPinUtils().isSet(block)) {
             this.block = block;
         } else {
-            if (main.getDoorUtils().isDoor(block)) {
-                if (main.getPinUtils().isSet(main.getDoorUtils().getOtherHalfBlock(block))) {
-                    this.block = main.getDoorUtils().getOtherHalfBlock(block);
+            if (DoorUtils.isDoor(block)) {
+                if (main.getPinUtils().isSet(DoorUtils.getOtherHalfBlock(block))) {
+                    this.block = DoorUtils.getOtherHalfBlock(block);
                 } else {
                     this.block = block;
                 }
