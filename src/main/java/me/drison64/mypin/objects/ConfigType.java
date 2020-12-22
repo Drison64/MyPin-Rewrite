@@ -22,11 +22,11 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.Objects;
+package me.drison64.mypin.objects;
 
-import me.drison64.mypin.Configurations.Config;
-import me.drison64.mypin.Configurations.Configuration;
-import me.drison64.mypin.Configurations.Data;
+import me.drison64.mypin.configurations.Config;
+import me.drison64.mypin.configurations.Configuration;
+import me.drison64.mypin.configurations.Data;
 
 public enum ConfigType {
 

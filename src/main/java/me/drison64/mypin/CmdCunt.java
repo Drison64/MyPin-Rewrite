@@ -24,18 +24,18 @@
 
 package me.drison64.mypin;
 
-import me.drison64.mypin.Managers.InventoryManager;
+import me.drison64.mypin.managers.InventoryManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class cmdcunt implements CommandExecutor {
+public class CmdCunt implements CommandExecutor {
 
     Main main;
 
     InventoryManager inventoryManager;
 
-    public cmdcunt(Main main) {
+    public CmdCunt(Main main) {
         this.main = main;
 
         inventoryManager = main.getInventoryManager();

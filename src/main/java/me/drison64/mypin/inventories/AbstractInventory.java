@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.Inventories;
+package me.drison64.mypin.inventories;
 
 import me.drison64.mypin.Main;
 import org.bukkit.Bukkit;

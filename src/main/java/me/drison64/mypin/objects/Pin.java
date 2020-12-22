@@ -22,12 +22,12 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.Objects;
+package me.drison64.mypin.objects;
 
-import me.drison64.mypin.Configurations.Configuration;
+import me.drison64.mypin.configurations.Configuration;
 import me.drison64.mypin.Main;
-import me.drison64.mypin.Managers.ConfigManager;
-import me.drison64.mypin.Utils.EncryptionUtils;
+import me.drison64.mypin.managers.ConfigManager;
+import me.drison64.mypin.utils.EncryptionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
