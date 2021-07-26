@@ -29,7 +29,7 @@ import me.drison64.mypin.configurations.Data;
 import me.drison64.mypin.listener.InventoryListener;
 import me.drison64.mypin.listener.PlayerListener;
 import me.drison64.mypin.managers.*;
-import me.drison64.mypin.objects.Action.*;
+import me.drison64.mypin.objects.action.*;
 import me.drison64.mypin.utils.DefaultActionsUtils;
 import me.drison64.mypin.utils.DoorUtils;
 import me.drison64.mypin.utils.PinUtils;

@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package me.drison64.mypin.objects.Action;
+package me.drison64.mypin.objects.action;
 
 public enum ActionType {
 
