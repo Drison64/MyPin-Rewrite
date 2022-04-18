@@ -52,6 +52,7 @@ public class Configuration {
         file = new File(Bukkit.getPluginManager().getPlugin("MyPin").getDataFolder(), fileName + ".yml");
         if (!file.exists()) {
             try {
+                file.getParentFile().mkdirs();
                 file.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();

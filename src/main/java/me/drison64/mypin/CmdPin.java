@@ -49,9 +49,6 @@ public class CmdPin implements CommandExecutor {
             return false;
         }
         Player player = (Player) sender;
-        if (args[0].length() == 0) {
-            player.sendMessage("YOU FUCKING CUNT");
-        }
 
         if (args[0].equals("add")) {
             waitingManager.addWaiting(player, ClickType.ADD);

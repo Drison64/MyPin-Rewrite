@@ -101,13 +101,7 @@ public class AddInventory extends AbstractInventory {
 
             Pin pin = pinManager.getNew();
             pin.setPin(code);
-            pin
-                    .
-                    setWorld
-                    (
-                    block
-                            .
-                                    getWorld());
+            pin.setWorld(block.getWorld());
             pin.setOwner(e.getWhoClicked().getUniqueId());
             pin.setCommands(main.getDefaultActionsUtils().getDefaultActions(block));
             pin.setDefaultpermissions("10000");

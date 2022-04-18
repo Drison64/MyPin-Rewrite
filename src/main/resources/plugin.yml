@@ -3,8 +3,6 @@ version: ${project.version}
 main: me.drison64.mypin.Main
 api-version: 1.14
 commands:
-  cunt:
-    description: Test command (You can question my selection of test commands ok?)
   pin:
     description: Main command
     alias: mypin
