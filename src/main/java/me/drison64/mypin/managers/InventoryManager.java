@@ -43,7 +43,9 @@ public class InventoryManager {
     }*/
 
     public void fire(Event e, Player player) {
-        inventoryHashMap.get(player).fire(e);
+        AbstractInventory inv = inventoryHashMap.get(player);
+
+        if (inv != null) inv.fire(e);
     }
 
     public HashMap<Player, AbstractInventory> getInventoryHashMap() {

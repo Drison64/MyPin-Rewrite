@@ -42,6 +42,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.EquipmentSlot;
 
 public class PlayerListener implements Listener {
 
@@ -64,11 +65,9 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        Bukkit.getConsoleSender().sendMessage("pes1");
 
-        if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+        if ((event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK) && event.getHand() == EquipmentSlot.HAND) {
             ClickType type = waitingManager.getWaiting(player);
-            Bukkit.getConsoleSender().sendMessage("pes2");
 
             if (type == null) {
 
@@ -104,13 +103,13 @@ public class PlayerListener implements Listener {
 
             event.setCancelled(true);
 
-            switch (type) {
-                case ADD: new AddInventory(main).open(player, null, event.getClickedBlock());
-                case EDIT: new EditInventory(main, EditInventoryType.INFO, 1).open(player, null, event.getClickedBlock());
+            if (type == ClickType.ADD) {
+                new AddInventory(main).open(player, null, event.getClickedBlock());
+            } else if (type == ClickType.EDIT) {
+                new EditInventory(main, EditInventoryType.INFO, 1).open(player, null, event.getClickedBlock());
             }
 
             waitingManager.removeWaiting(player);
-            Bukkit.getConsoleSender().sendMessage("pes3");
         }
     }
 

@@ -69,7 +69,6 @@ public class EditInventory extends AbstractInventory {
     }
 
     public Inventory initInfo(Inventory inventory) {
-        Bukkit.getPlayer("Drison64").sendMessage("pejsek");
         int[] slots = {46,47,51,52};
 
         for (int i : slots) {

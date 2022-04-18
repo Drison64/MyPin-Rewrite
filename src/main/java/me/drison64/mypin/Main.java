@@ -69,6 +69,9 @@ public class Main extends JavaPlugin {
 
         configManager = new ConfigManager(this);
 
+        configManager.registerConfig(new Config(this));
+        configManager.registerConfig(new Data(this));
+
         pinUtils = new PinUtils(this);
 
 
@@ -81,12 +84,6 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new InventoryListener(this), this);
         pluginManager.registerEvents(new PlayerListener(this), this);
 
-        configManager.registerConfig(new Config(this));
-        configManager.registerConfig(new Data(this));
-
-
-
-        getCommand("cunt").setExecutor(new CmdCunt(this));
         getCommand("pin").setExecutor(new CmdPin(this));
 
     }

@@ -29,12 +29,16 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Openable;
+import org.bukkit.block.data.Powerable;
+import org.bukkit.block.data.type.Switch;
 import org.bukkit.entity.Player;
+import org.bukkit.material.Button;
 
 import java.util.List;
 
-public class Action_Interact extends Action {
+public class    Action_Interact extends Action {
 
     private Main main;
     private double delay = 1;
@@ -70,7 +74,23 @@ public class Action_Interact extends Action {
 
         if (InteractEnum.BUTTON.getMaterialList().contains(block.getType())) {
 
-            //TODO Button
+            Powerable button = (Powerable) block.getBlockData();
+            Switch switchButton = (Switch) block.getBlockData();
+            button.setPowered(true);
+            block.setBlockData(button);
+            block.getState().update(true);
+            block.getRelative(switchButton.getFacing().getOppositeFace()).getState().update(true);
+
+            Bukkit.getScheduler().runTaskLater(main, new Runnable() {
+                @Override
+                public void run() {
+                    button.setPowered(false);
+                    block.setBlockData(button);
+                    block.getState().update(true);
+                    block.getRelative(switchButton.getFacing().getOppositeFace()).getState().update(true);
+                    runNext(data, line, block, player);
+                }
+            }, (long) (delay * 20));
 
         }
 
