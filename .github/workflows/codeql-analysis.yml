@@ -28,7 +28,7 @@ jobs:
       if: ${{ github.event_name == 'pull_request' }}
 
     - id: set-nms-version
-      run: echo ::set-output name=nms-version::1.14.4
+      run: echo ::set-output name=nms-version::1.16.5
     - name: Cache NMS
       id: cache-nms
       uses: actions/cache@v1
